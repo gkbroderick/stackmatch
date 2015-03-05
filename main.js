@@ -1,13 +1,14 @@
+Games = new Meteor.Collection('games');
+
 if (Meteor.isClient) {
   Template.Grid.helpers ({
-    randomize: function() {
+    shuffledCards: function() {
       var list = [];
       for (i=1; i<=20; i++) {
         list.push(i);
       }
-      console.log(list);
       var listDbl = list.concat(list);
-      console.log(listDbl);
+
       return shuffle(listDbl);
     }
   });
@@ -25,20 +26,21 @@ if (Meteor.isServer) {
 
 
 function shuffle(array) {
- var currentIndex = array.length, temporaryValue, randomIndex ;
+  //based on Fisher-Yates shuffle algorithm
+  var currentIndex = array.length;
+  var temporaryValue;
+  var randomIndex;
 
- // While there remain elements to shuffle...
- while (0 !== currentIndex) {
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
 
-   // Pick a remaining element...
-   randomIndex = Math.floor(Math.random() * currentIndex);
-   currentIndex -= 1;
-
-   // And swap it with the current element.
-   temporaryValue = array[currentIndex];
-   array[currentIndex] = array[randomIndex];
-   array[randomIndex] = temporaryValue;
- }
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
 
  return array;
 }
+
+

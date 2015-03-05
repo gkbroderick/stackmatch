@@ -1,18 +1,38 @@
-<head>
-</head>
 <body>
 
+  <section class='grid-container'>
+    StackMatch
+<!--
+    {{#if localStorage.fingerprint}}
+      {{> Grid}}
+    {{else}}
+      {{> NewGame}}
+    {{/if}} 
+-->
 
-{{> Grid}}
+    {{> Grid}}
+  </section>
 
+  <section class='matches-container'>
+   {{> Matches}}
+  </section>
 </body>
 
 
+
+<template name='NewGame'>
+  
+  
+</template>
+
 <template name='Grid'>
-  Hello World
   <ul>
-  {{#each randomize}}
-  <li>{{this}}</li>
-  {{/each}}
+    {{#each shuffledCards}}
+      <li>{{this}}</li>
+    {{/each}}
   </ul>
+</template>
+
+<template name='Matches'>
+  Your Matches
 </template>
