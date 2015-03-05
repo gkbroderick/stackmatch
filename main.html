@@ -9,7 +9,7 @@
       {{> NewGame}}
     {{/if}} 
 -->
-
+    {{> NewGame}}
     {{> Grid}}
   </section>
 
@@ -19,16 +19,14 @@
 </body>
 
 
-
 <template name='NewGame'>
-  
-  
+  <input type=button id='newGame' value='Start New Game'>
 </template>
 
 <template name='Grid'>
   <ul>
     {{#each shuffledCards}}
-      <li>{{this}}</li>
+      <li id='grid-{{idx}}' class='{{class}}'>{{val}}</li>
     {{/each}}
   </ul>
 </template>

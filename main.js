@@ -1,15 +1,26 @@
 Games = new Meteor.Collection('games');
 
 if (Meteor.isClient) {
+  
+  Template.NewGame.events ({
+    'click #newGame': function() {
+      var cards = [];
+      for (i=1; i<=20; i++) {
+        cards.push(i);
+      }
+      var cardsDbl = cards.concat(cards);
+      var cardsObj = shuffle(cardsDbl).map(function(value, index) {
+        return {'idx': index, 'val': value, 'class': 'turned-down'};
+      });
+      localStorage.setItem('gameId', Games.insert({grid: cardsObj}));
+    }
+  });
+  
   Template.Grid.helpers ({
     shuffledCards: function() {
-      var list = [];
-      for (i=1; i<=20; i++) {
-        list.push(i);
-      }
-      var listDbl = list.concat(list);
-
-      return shuffle(listDbl);
+      var curGameId = localStorage.gameId;
+      var game = Games.findOne({_id: curGameId});
+      return game.grid;
     }
   });
 
