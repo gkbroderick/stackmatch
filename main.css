@@ -22,3 +22,27 @@ li {
   width: 100px;
   display: inline;
 }
+
+.waiting-queue {
+  background: lightblue;
+}
+
+li.turned-down {
+  background: indigo
+}
+
+header.head-container {
+  
+}
+
+section.grid-container{
+  float: left;
+}
+
+aside.game-control-container {
+  float:right;
+}
+
+footer.match-container {
+  float: left;
+}
