@@ -21,14 +21,12 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
     <input type=button id='leaveGame' value='Leave Game'>
-
   {{else}}
     <input type=button id='newGame' value='Start New Game'>
-    <p>Waiting for Opponent</p>
+    <p>Or Choose an Opponent</p>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>{{players.[0]}} - {{timestamp}}</p>
     {{/each}}
-
   {{/if}}
   
 </template>
@@ -36,7 +34,7 @@
 <template name='Grid'>
   <ul>
     {{#each shuffledCards}}
-      <li id='grid-{{idx}}' class='{{class}}'>{{val}}</li>
+      <li id='{{idx}}' class='{{class}}'>{{val}}</li>
     {{/each}}
   </ul>
 </template>

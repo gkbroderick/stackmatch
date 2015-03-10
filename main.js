@@ -5,27 +5,32 @@ Devices = new Meteor.Collection('devices');
 if (Meteor.isClient) {
   
   Meteor.startup(function() {
-    if (localStorage.getItem('deviceId') === null) {
+    if (!(localStorage.getItem('deviceId'))) {
       //if no deviceId, then try to get it from gameId
       localStorage.setItem('deviceId', Devices.insert({nickname: ''}));
     }
-
     Session.set('deviceId', localStorage.deviceId);
     Session.set('gameId', localStorage.gameId);
-    
   });
-  
+
   Template.GameControl.helpers ({
     gamesWaiting: function() {
       return Games.find({players: {$size: 1}});
     },
-    
+
     gameInProgress: function() {
       return Session.get('gameId');
     }
   });
   
   Template.GameControl.events ({
+    'dblclick p.waiting-queue': function(evt) {
+      var joinGameId = event.target.id
+      Games.update({_id: joinGameId}, {$addToSet: {players: Session.get('deviceId')}});
+      Session.set('gameId', joinGameId);
+      localStorage.setItem('gameId', joinGameId);
+    },
+
     'click #newGame': function() {
       var cards = [];
       for (i=1; i<=20; i++) {
@@ -50,9 +55,10 @@ if (Meteor.isClient) {
       var conf = window.confirm('Really? End this game?');
       if (conf == true) {
         Meteor.call('removeMyGames', Session.get('gameId'), Session.get('deviceId'));
+        Session.set('gameId', '');
+        localStorage.setItem('gameId', '');
       }
-      Session.set('gameId', null);
-      localStorage.setItem('gameId', null);
+
     }
   });
   
@@ -61,13 +67,18 @@ if (Meteor.isClient) {
       if (Session.get('gameId')) {
         var curGameId = Session.get('gameId');
         var game = Games.findOne({_id: curGameId});
-        return game.grid;
+        if (game) return game.grid;
+        return false;
       }
     }
   });
 
   Template.Grid.events({
-    
+    'click li': function(evt) {
+      var cardIdx = event.target.id;
+      var cardVal = 
+      //Games.update({_id: Session.get('gameId')}, {$set:{grid.cardIdx.class: 'turned-up'}})
+    }
   });
 }
 
@@ -78,6 +89,7 @@ if (Meteor.isServer) {
   
   Meteor.methods ({
     removeMyGames: function(gameId, deviceId) {
+      //only remove games initiated by the user
       Games.remove({
         _id: gameId,
         'players.0': deviceId
