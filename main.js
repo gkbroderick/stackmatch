@@ -76,7 +76,7 @@ if (Meteor.isClient) {
   Template.Grid.events({
     'click li': function(evt) {
       var cardIdx = event.target.id;
-      var cardVal = 
+      var cardVal = ''
       //Games.update({_id: Session.get('gameId')}, {$set:{grid.cardIdx.class: 'turned-up'}})
     }
   });

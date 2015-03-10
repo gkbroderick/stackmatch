@@ -12,6 +12,10 @@ li {
   border-radius: 5px;
   padding: 2px;
   margin: 4px 2px 4px 2px;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  font-size: 2.5em;
 }
 
 .grid-container {
@@ -28,7 +32,11 @@ li {
 }
 
 li.turned-down {
-  background: indigo
+  background: indigo;
+}
+
+li.turned-up {
+  background: lightblue;
 }
 
 header.head-container {
