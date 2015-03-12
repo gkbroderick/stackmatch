@@ -32,11 +32,11 @@ li {
 }
 
 li.turned-down {
-  background: indigo;
+  background: lightblue;
 }
 
 li.turned-up {
-  background: lightblue;
+  background: indigo;
 }
 
 header.head-container {
