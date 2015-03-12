@@ -1,34 +1,40 @@
 <body>
+  <header class='head-container'>
+    <div><h3>StackMatch</h3></div>
+  </header>
 
   <section class='grid-container'>
-    StackMatch
-<!--
-    {{#if localStorage.fingerprint}}
-      {{> Grid}}
-    {{else}}
-      {{> NewGame}}
-    {{/if}} 
--->
-
     {{> Grid}}
   </section>
 
-  <section class='matches-container'>
+  <aside class='game-control-container'>
+    {{> GameControl}}
+  </aside>
+
+  <footer class='matches-container'>
    {{> Matches}}
-  </section>
+  </footer>
+
 </body>
 
 
-
-<template name='NewGame'>
-  
+<template name='GameControl'>
+  {{#if gameInProgress}}
+    <input type=button id='leaveGame' value='Leave Game'>
+  {{else}}
+    <input type=button id='newGame' value='Start New Game'>
+    <p>Or Choose an Opponent</p>
+    {{#each gamesWaiting}}
+      <p id='{{_id}}' class='waiting-queue'>{{players.[0]}} - {{timestamp}}</p>
+    {{/each}}
+  {{/if}}
   
 </template>
 
 <template name='Grid'>
   <ul>
     {{#each shuffledCards}}
-      <li>{{this}}</li>
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'></li>
     {{/each}}
   </ul>
 </template>
