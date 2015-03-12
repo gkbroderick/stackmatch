@@ -94,6 +94,8 @@ if (Meteor.isClient) {
       var curGameData = Games.findOne({_id: Session.get('gameId')});
       var lastMove = curGameData.moves.pop();
 
+      if (curGameData.grid[thisMove.cardIdx].class === 'turned-up') return false;
+
       if (typeof lastMove !== 'undefined') {
         if (lastMove.turnIdx === 2) {
           // Next player first pick
