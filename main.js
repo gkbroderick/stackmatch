@@ -37,14 +37,14 @@ if (Meteor.isClient) {
         cards.push(i);
       }
       // make a random shuffle of all pairs
-      var cardsDbl = cards.concat(cards);
-      var cardsObj = shuffle(cardsDbl).map(function(value, index) {
+      var cardsDup = cards.concat(cards);
+      var cardsShuffled = shuffle(cardsDup).map(function(value, index) {
         return {'idx': index, 'val': value, 'class': 'turned-down'};
       });
       
       // initialize new game entry in db
       localStorage.setItem('sm_gameId', Games.insert({
-        grid: cardsObj,
+        grid: cardsShuffled,
         moves: [],
         players: [localStorage.sm_deviceId],
         timestamp: new Date().toISOString()
@@ -92,6 +92,7 @@ if (Meteor.isClient) {
         playerIdx: 1   // 0 or 1
       };
       var curGameData = Games.findOne({_id: Session.get('gameId')});
+      console.log(curGameData);
       var lastMove = curGameData.moves.pop();
 
       if (curGameData.grid[thisMove.cardIdx].class === 'turned-up') return false;
