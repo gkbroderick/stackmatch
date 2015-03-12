@@ -86,8 +86,29 @@ if (Meteor.isClient) {
 
   Template.Grid.events({
     'click li': function(evt) {
-      var cardIdx = parseInt(event.target.id.split('-')[1]);
-      Meteor.call('flipUpCard', Session.get('gameId'), cardIdx);
+      var thisMove = {
+        cardIdx: parseInt(event.target.id.split('-')[1]),
+        turnIdx: 1,    // 1 or 2
+        playerIdx: 1   // 0 or 1
+      };
+      var curGameData = Games.findOne({_id: Session.get('gameId')});
+      var lastMove = curGameData.moves.pop();
+
+      if (typeof lastMove !== 'undefined') {
+        if (lastMove.turnIdx === 2) {
+          // Next player first pick
+          thisMove.playerIdx = (lastMove.playerIdx) === 1 ? 0 : 1;
+          thisMove.turnIdx = 1;
+        } else {
+          // Same player second pick
+          thisMove.playerIdx = lastMove.playerIdx;
+          thisMove.turnIdx = 2;
+        }
+      }
+
+      if (Session.get('deviceId') === curGameData.players[thisMove.playerIdx]) {
+        Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove);
+      }
     }
   });
 }
@@ -106,9 +127,8 @@ if (Meteor.isServer) {
       })
     },
 
-    flipUpCard: function(gameId, cardIndex) {
-      console.log(gameId, cardIndex);
-      Games.update({_id: gameId, 'grid.idx': cardIndex}, {$set: {'grid.$.class': 'turned-up'}});
+    flipUpCard: function(gameId, thisMove, lastMove) {
+      Games.update({_id: gameId, 'grid.idx': thisMove.cardIdx}, {$set: {'grid.$.class': 'turned-up'}, $push: {moves: thisMove}});
     }
   })
 }
