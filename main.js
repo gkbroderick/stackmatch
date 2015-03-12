@@ -5,12 +5,12 @@ Devices = new Meteor.Collection('devices');
 if (Meteor.isClient) {
   
   Meteor.startup(function() {
-    if (!(localStorage.getItem('deviceId'))) {
-      //if no deviceId, then try to get it from gameId
-      localStorage.setItem('deviceId', Devices.insert({nickname: ''}));
+    if (!(localStorage.getItem('sm_deviceId'))) {
+      //if no sm_deviceId, then try to get it from sm_gameId
+      localStorage.setItem('sm_deviceId', Devices.insert({nickname: ''}));
     }
-    Session.set('deviceId', localStorage.deviceId);
-    Session.set('gameId', localStorage.gameId);
+    Session.set('deviceId', localStorage.sm_deviceId);
+    Session.set('gameId', localStorage.sm_gameId);
   });
 
   Template.GameControl.helpers ({
@@ -28,7 +28,7 @@ if (Meteor.isClient) {
       var joinGameId = event.target.id
       Games.update({_id: joinGameId}, {$addToSet: {players: Session.get('deviceId')}});
       Session.set('gameId', joinGameId);
-      localStorage.setItem('gameId', joinGameId);
+      localStorage.setItem('sm_gameId', joinGameId);
     },
 
     'click #newGame': function() {
@@ -43,12 +43,13 @@ if (Meteor.isClient) {
       });
       
       // initialize new game entry in db
-      localStorage.setItem('gameId', Games.insert({
+      localStorage.setItem('sm_gameId', Games.insert({
         grid: cardsObj,
-        players: [localStorage.deviceId],
-        timestamp: Date.now()
+        moves: [],
+        players: [localStorage.sm_deviceId],
+        timestamp: new Date().toISOString()
       }));
-      Session.set('gameId', localStorage.gameId);
+      Session.set('gameId', localStorage.sm_gameId);
     },
     
     'click #leaveGame': function() {
@@ -56,7 +57,7 @@ if (Meteor.isClient) {
       if (conf == true) {
         Meteor.call('removeMyGames', Session.get('gameId'), Session.get('deviceId'));
         Session.set('gameId', '');
-        localStorage.setItem('gameId', '');
+        localStorage.setItem('sm_gameId', '');
       }
 
     }
@@ -66,7 +67,17 @@ if (Meteor.isClient) {
     shuffledCards: function() {
       if (Session.get('gameId')) {
         var curGameId = Session.get('gameId');
-        var game = Games.findOne({_id: curGameId});
+        var game = Games.findOne(curGameId, {
+          transform: function(doc) {
+            for (i = 0; i < doc.grid.length; i++) {
+              if (doc.grid[i].class === 'turned-down') {
+                doc.grid[i].val = '';
+              }
+            }
+            return doc
+          }
+        });
+
         if (game) return game.grid;
         return false;
       }
@@ -75,9 +86,8 @@ if (Meteor.isClient) {
 
   Template.Grid.events({
     'click li': function(evt) {
-      var cardIdx = event.target.id;
-      var cardVal = ''
-      //Games.update({_id: Session.get('gameId')}, {$set:{grid.cardIdx.class: 'turned-up'}})
+      var cardIdx = parseInt(event.target.id.split('-')[1]);
+      Meteor.call('flipUpCard', Session.get('gameId'), cardIdx);
     }
   });
 }
@@ -94,6 +104,11 @@ if (Meteor.isServer) {
         _id: gameId,
         'players.0': deviceId
       })
+    },
+
+    flipUpCard: function(gameId, cardIndex) {
+      console.log(gameId, cardIndex);
+      Games.update({_id: gameId, 'grid.idx': cardIndex}, {$set: {'grid.$.class': 'turned-up'}});
     }
   })
 }

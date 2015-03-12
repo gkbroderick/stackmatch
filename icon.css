@@ -24,81 +24,97 @@ li.icon-4:before {
 }
 
 li.icon-5:before {
-  content: "\f09b";
+  /*apple*/
+  content: "\f179";
   font-family: FontAwesome;
 }
 
 li.icon-6:before {
-  content: "\f09b";
+  /*automobile*/
+  content: "\f1b9";
   font-family: FontAwesome;
 }
 
 li.icon-7:before {
-  content: "\f09b";
+  /*bomb*/
+  content: "\f1e2";
   font-family: FontAwesome;
 }
 
 li.icon-8:before {
-  content: "\f09b";
+  /*bug*/
+  content: "\f188";
   font-family: FontAwesome;
 }
 
 li.icon-9:before {
-  content: "\f09b";
+  /*clock*/
+  content: "\f017";
   font-family: FontAwesome;
 }
 
 li.icon-10:before {
-  content: "\f09b";
+  /*cogs*/
+  content: "\f085";
   font-family: FontAwesome;
 }
 
 li.icon-11:before {
-  content: "\f09b";
+  /*coffee*/
+  content: "\f0f4";
   font-family: FontAwesome;
 }
 
 li.icon-12:before {
-  content: "\f09b";
+  /*flask*/
+  content: "\f0c3";
   font-family: FontAwesome;
 }
 
 li.icon-13:before {
-  content: "\f09b";
+  /*medkit*/
+  content: "\f0fa";
   font-family: FontAwesome;
 }
 
 li.icon-14:before {
-  content: "\f09b";
+  /*microphone*/
+  content: "\f130";
   font-family: FontAwesome;
 }
 
 li.icon-15:before {
-  content: "\f09b";
+  /*music*/
+  content: "\f001";
   font-family: FontAwesome;
 }
 
 li.icon-16:before {
-  content: "\f09b";
+  /*moon-o*/
+  content: "\f186";
   font-family: FontAwesome;
 }
 
 li.icon-17:before {
-  content: "\f09b";
+  /*paper-plane-o*/
+  content: "\f1d9";
   font-family: FontAwesome;
 }
 
 li.icon-18:before {
-  content: "\f09b";
+  /*mortar-board*/
+  content: "\f19d";
   font-family: FontAwesome;
 }
 
 li.icon-19:before {
-  content: "\f09b";
+  /*paperclip*/
+  content: "\f0c6";
   font-family: FontAwesome;
 }
 
 li.icon-20:before {
-  content: "\f09b";
+  /*rocket*/
+  content: "\f135";
   font-family: FontAwesome;
 }
