@@ -1,6 +1,4 @@
 Games = new Meteor.Collection('games');
-Players = new Meteor.Collection('players');
-Devices = new Meteor.Collection('devices');
 
 if (Meteor.isClient) {
   
@@ -27,7 +25,7 @@ if (Meteor.isClient) {
   Template.GameControl.events ({
     'dblclick p.waiting-queue': function(evt) {
       var joinGameId = event.target.id
-      Games.update({_id: joinGameId}, {$addToSet: {players: {device: Session.get('deviceId'), matches: []}}});
+      Games.update({_id: joinGameId}, {$addToSet: {players: {device: Session.get('deviceId'), matches: [], totalScore: 0}}});
       Session.set('gameId', joinGameId);
       localStorage.setItem('sm_gameId', joinGameId);
       Session.set('message', 'Game on! Challenger has first move.')
@@ -60,7 +58,7 @@ if (Meteor.isClient) {
       localStorage.setItem('sm_gameId', Games.insert({
         grid: cardsShuffled,
         moves: [],
-        players: [{device: localStorage.sm_deviceId, matches: []}],
+        players: [{device: localStorage.sm_deviceId, matches: [], totalScore: 0}],
         timestamp: new Date().toISOString()
       }));
       Session.set('gameId', localStorage.sm_gameId);
@@ -111,8 +109,8 @@ if (Meteor.isClient) {
       //console.log(curGameData);
       var lastMove = curGameData.moves.pop();
 
-      if (curGameData.grid[thisMove.cardIdx].class === 'turned-up') return false;
-
+      if (curGameData.grid[thisMove.cardIdx].class.indexOf('turned-up') > -1) return false;
+      console.log(curGameData.grid[thisMove.cardIdx]);
       if (typeof lastMove !== 'undefined') {
         if (lastMove.turnIdx === 2) {
           // Next player first pick
@@ -121,6 +119,7 @@ if (Meteor.isClient) {
           Session.set('message', 'Choose a second card.')
         } else {
           // Same player second pick
+          if (thisMove.cardIdx === lastMove.cardIdx) return false;
           thisMove.playerIdx = lastMove.playerIdx;
           thisMove.turnIdx = 2;
         }
@@ -144,6 +143,11 @@ if (Meteor.isClient) {
         }
       });
       if (me) return me.matches;
+    },
+
+    scoreBoard: function() {
+      var curGame = Games.findOne({_id: Session.get('gameId')});
+      if (curGame) return curGame;
     }
   });
 
@@ -176,9 +180,15 @@ if (Meteor.isServer) {
         if (curGameData.grid[thisMove.cardIdx].val === curGameData.grid[lastMove.cardIdx].val) {
           var thisMatch = curGameData.grid[thisMove.cardIdx];
           if (thisMove.playerIdx === 0) {
-            Games.update({_id: gameId}, {$push: {'players.0.matches': thisMatch}});
+            Games.update(
+              {_id: gameId}, 
+              {$set: {'players.0.totalScore': curGameData.players[0].totalScore + thisMatch.score}, $push: {'players.0.matches': thisMatch}}
+            );
           } else {
-            Games.update({_id: gameId}, {$push: {'players.1.matches': thisMatch}});
+            Games.update(
+              {_id: gameId}, 
+              {$set: {'players.1.totalScore': curGameData.players[1].totalScore + thisMatch.score}, $push: {'players.1.matches': thisMatch}}
+            );
           }
           return 'Match Found'
         } else {
