@@ -5,6 +5,7 @@ Devices = new Meteor.Collection('devices');
 if (Meteor.isClient) {
   
   Meteor.startup(function() {
+    Session.set('message', 'test message');
     if (!(localStorage.getItem('sm_deviceId'))) {
       //if no sm_deviceId, then try to get it from sm_gameId
       localStorage.setItem('sm_deviceId', Devices.insert({nickname: ''}));
@@ -26,30 +27,44 @@ if (Meteor.isClient) {
   Template.GameControl.events ({
     'dblclick p.waiting-queue': function(evt) {
       var joinGameId = event.target.id
-      Games.update({_id: joinGameId}, {$addToSet: {players: Session.get('deviceId')}});
+      Games.update({_id: joinGameId}, {$addToSet: {players: {device: Session.get('deviceId'), matches: []}}});
       Session.set('gameId', joinGameId);
       localStorage.setItem('sm_gameId', joinGameId);
+      Session.set('message', 'Game on! Challenger has first move.')
     },
 
     'click #newGame': function() {
       var cards = [];
+      var score = 0
       for (i=1; i<=20; i++) {
         cards.push(i);
       }
       // make a random shuffle of all pairs
-      var cardsDbl = cards.concat(cards);
-      var cardsObj = shuffle(cardsDbl).map(function(value, index) {
-        return {'idx': index, 'val': value, 'class': 'turned-down'};
+      var cardsDup = cards.concat(cards);
+      var cardsShuffled = shuffle(cardsDup).map(function(value, index) {
+        if (value < 3) {
+          score = -30;
+        } else if (value < 8) {
+          score = 10;
+        } else if (value < 13) {
+          score = 15;
+        } else if (value < 18) {
+          score = 20;
+        } else {
+          score = 25;
+        }
+        return {'idx': index, 'val': value, 'score': score, 'class': 'turned-down'};
       });
       
       // initialize new game entry in db
       localStorage.setItem('sm_gameId', Games.insert({
-        grid: cardsObj,
+        grid: cardsShuffled,
         moves: [],
-        players: [localStorage.sm_deviceId],
+        players: [{device: localStorage.sm_deviceId, matches: []}],
         timestamp: new Date().toISOString()
       }));
       Session.set('gameId', localStorage.sm_gameId);
+      Session.set('message', 'Waiting for challenger to join.');
     },
     
     'click #leaveGame': function() {
@@ -72,6 +87,7 @@ if (Meteor.isClient) {
             for (i = 0; i < doc.grid.length; i++) {
               if (doc.grid[i].class === 'turned-down') {
                 doc.grid[i].val = '';
+                doc.grid[i].score = '';
               }
             }
             return doc
@@ -92,13 +108,17 @@ if (Meteor.isClient) {
         playerIdx: 1   // 0 or 1
       };
       var curGameData = Games.findOne({_id: Session.get('gameId')});
+      //console.log(curGameData);
       var lastMove = curGameData.moves.pop();
+
+      if (curGameData.grid[thisMove.cardIdx].class === 'turned-up') return false;
 
       if (typeof lastMove !== 'undefined') {
         if (lastMove.turnIdx === 2) {
           // Next player first pick
           thisMove.playerIdx = (lastMove.playerIdx) === 1 ? 0 : 1;
           thisMove.turnIdx = 1;
+          Session.set('message', 'Choose a second card.')
         } else {
           // Same player second pick
           thisMove.playerIdx = lastMove.playerIdx;
@@ -106,9 +126,30 @@ if (Meteor.isClient) {
         }
       }
 
-      if (Session.get('deviceId') === curGameData.players[thisMove.playerIdx]) {
-        Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove);
+      if (Session.get('deviceId') === curGameData.players[thisMove.playerIdx].device) {
+        Session.set('message', Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove));
       }
+    }
+  });
+
+  Template.Matches.helpers({
+    yourMatches: function() {
+      var me = Games.findOne({_id: Session.get('gameId')}, {
+        transform: function(doc) {
+          for (i = 0; i<=1; i++) {
+            if (doc.players[i].device === Session.get('deviceId')) {
+              return doc.players[i];
+            }
+          }
+        }
+      });
+      if (me) return me.matches;
+    }
+  });
+
+  Template.GameMessages.helpers({
+    message: function() {
+      return Session.get('message');
     }
   });
 }
@@ -123,12 +164,33 @@ if (Meteor.isServer) {
       //only remove games initiated by the user
       Games.remove({
         _id: gameId,
-        'players.0': deviceId
+        'players.device': deviceId
       })
     },
 
     flipUpCard: function(gameId, thisMove, lastMove) {
-      Games.update({_id: gameId, 'grid.idx': thisMove.cardIdx}, {$set: {'grid.$.class': 'turned-up'}, $push: {moves: thisMove}});
+      Games.update({_id: gameId, 'grid.idx': thisMove.cardIdx}, {$set: {'grid.$.class': 'turned-up player-' + thisMove.playerIdx}, $push: {moves: thisMove}});
+      
+      if (thisMove.turnIdx === 2) {
+        curGameData = Games.findOne({_id: gameId});
+        if (curGameData.grid[thisMove.cardIdx].val === curGameData.grid[lastMove.cardIdx].val) {
+          var thisMatch = curGameData.grid[thisMove.cardIdx];
+          if (thisMove.playerIdx === 0) {
+            Games.update({_id: gameId}, {$push: {'players.0.matches': thisMatch}});
+          } else {
+            Games.update({_id: gameId}, {$push: {'players.1.matches': thisMatch}});
+          }
+          return 'Match Found'
+        } else {
+          Meteor.setTimeout(function() {
+            Games.update({_id: gameId, 'grid.idx': thisMove.cardIdx}, {$set: {'grid.$.class': 'turned-down'}});
+            Games.update({_id: gameId, 'grid.idx': lastMove.cardIdx}, {$set: {'grid.$.class': 'turned-down'}})
+            return 'Not A Match';
+          }, 3000)
+        }
+      } else {
+        return 'Flip Another Card';
+      }
     }
   })
 }

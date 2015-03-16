@@ -1,6 +1,7 @@
 <body>
   <header class='head-container'>
     <div><h3>StackMatch</h3></div>
+    {{> GameMessages}}
   </header>
 
   <section class='grid-container'>
@@ -23,9 +24,11 @@
     <input type=button id='leaveGame' value='Leave Game'>
   {{else}}
     <input type=button id='newGame' value='Start New Game'>
-    <p>Or Choose an Opponent</p>
+    <p>Double-click to join a game:</p>
     {{#each gamesWaiting}}
-      <p id='{{_id}}' class='waiting-queue'>{{players.[0]}} - {{timestamp}}</p>
+      <p id='{{_id}}' class='waiting-queue'>Player: {{players.[0].device}}
+        <br>Started a game at: {{timestamp}}
+      </p>
     {{/each}}
   {{/if}}
   
@@ -34,11 +37,19 @@
 <template name='Grid'>
   <ul>
     {{#each shuffledCards}}
-      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'></li>
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
     {{/each}}
   </ul>
 </template>
 
 <template name='Matches'>
-  Your Matches
+  <ul>
+    {{#each yourMatches}}
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name='GameMessages'>
+  <p></p>
 </template>

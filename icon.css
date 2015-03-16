@@ -1,13 +1,13 @@
 
 li.icon-1:before {
-  /*github*/
-  content: "\f09b";
+  /*bomb*/
+  content: "\f1e2";
   font-family: FontAwesome;
 }
 
 li.icon-2:before {
-  /*bicycle*/
-  content: "\f206";
+  /*bug*/
+  content: "\f188";
   font-family: FontAwesome;
 }
 
@@ -36,14 +36,14 @@ li.icon-6:before {
 }
 
 li.icon-7:before {
-  /*bomb*/
-  content: "\f1e2";
+  /*github*/
+  content: "\f09b";
   font-family: FontAwesome;
 }
 
 li.icon-8:before {
-  /*bug*/
-  content: "\f188";
+  /*bicycle*/
+  content: "\f206";
   font-family: FontAwesome;
 }
 
