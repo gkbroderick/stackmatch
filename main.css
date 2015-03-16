@@ -15,7 +15,11 @@ li {
   text-align: center;
   vertical-align: middle;
   color: white;
-  font-size: 2.5em;
+  font-size: 2em;
+}
+
+div.tiny-score {
+  font-size: 0.5em;
 }
 
 .grid-container {
@@ -35,8 +39,12 @@ li.turned-down {
   background: lightblue;
 }
 
-li.turned-up {
+li.turned-up.player-0 {
   background: indigo;
+}
+
+li.turned-up.player-1 {
+  background: darkgreen;
 }
 
 header.head-container {
@@ -52,5 +60,5 @@ aside.game-control-container {
 }
 
 footer.match-container {
-  float: left;
+  float: none;
 }

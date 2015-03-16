@@ -35,13 +35,17 @@
 <template name='Grid'>
   <ul>
     {{#each shuffledCards}}
-      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'></li>
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
     {{/each}}
   </ul>
 </template>
 
 <template name='Matches'>
-  Your Matches
+  <ul>
+    {{#each yourMatches}}
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
+    {{/each}}
+  </ul>
 </template>
 
 <template name='GameMessages'>
