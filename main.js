@@ -23,12 +23,12 @@ if (Meteor.isClient) {
   });
   
   Template.GameControl.events ({
-    'dblclick p.waiting-queue': function(evt) {
+    'click p.waiting-queue': function(evt) {
       var joinGameId = event.target.id
       Games.update({_id: joinGameId}, {$addToSet: {players: {device: Session.get('deviceId'), matches: [], totalScore: 0}}});
       Session.set('gameId', joinGameId);
       localStorage.setItem('sm_gameId', joinGameId);
-      Session.set('message', 'Game on! Challenger has first move.')
+      Session.set('message', 'Game on! Player 2 has the first move.')
     },
 
     'click #newGame': function() {
@@ -110,7 +110,6 @@ if (Meteor.isClient) {
       var lastMove = curGameData.moves.pop();
 
       if (curGameData.grid[thisMove.cardIdx].class.indexOf('turned-up') > -1) return false;
-      console.log(curGameData.grid[thisMove.cardIdx]);
       if (typeof lastMove !== 'undefined') {
         if (lastMove.turnIdx === 2) {
           // Next player first pick

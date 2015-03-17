@@ -24,7 +24,7 @@
     <input type=button id='leaveGame' value='Leave Game'>
   {{else}}
     <input type=button id='newGame' value='Start New Game'>
-    <p>Double-click to join a game:</p>
+    <p>Select a game to join it:</p>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>Player: {{players.[0].device}}
         <br>Started a game at: {{timestamp}}
