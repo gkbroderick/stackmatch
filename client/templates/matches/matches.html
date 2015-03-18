@@ -1,0 +1,12 @@
+<template name='Matches'>
+  {{#with scoreBoard}}
+    <div class="player1">Player 1: {{players.[0].totalScore}}</div>
+    <div class="player2">Player 2: {{players.[1].totalScore}}</div>
+  {{/with}}
+  <h3>Your Matches</h3>
+  <ul>
+    {{#each yourMatches}}
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
+    {{/each}}
+  </ul>
+</template>
