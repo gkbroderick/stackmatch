@@ -62,3 +62,13 @@ aside.game-control-container {
 footer.match-container {
   float: none;
 }
+
+.player1 {
+  color: indigo;
+  font-weight: bold;
+}
+
+.player2 {
+  color: darkgreen;
+  font-weight: bold;
+}

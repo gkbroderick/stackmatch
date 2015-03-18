@@ -24,7 +24,7 @@
     <input type=button id='leaveGame' value='Leave Game'>
   {{else}}
     <input type=button id='newGame' value='Start New Game'>
-    <p>Double-click to join a game:</p>
+    <p>Select a game to join it:</p>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>Player: {{players.[0].device}}
         <br>Started a game at: {{timestamp}}
@@ -43,6 +43,11 @@
 </template>
 
 <template name='Matches'>
+  {{#with scoreBoard}}
+    <div class="player1">Player 1: {{players.[0].totalScore}}</div>
+    <div class="player2">Player 2: {{players.[1].totalScore}}</div>
+  {{/with}}
+  <h3>Your Matches</h3>
   <ul>
     {{#each yourMatches}}
       <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
