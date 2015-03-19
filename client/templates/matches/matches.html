@@ -1,7 +1,7 @@
 <template name='Matches'>
   {{#with scoreBoard}}
-    <div class="player1">Player 1: {{players.[0].totalScore}}</div>
-    <div class="player2">Player 2: {{players.[1].totalScore}}</div>
+    <div class="player1">{{players.[0].deviceName}}: {{players.[0].totalScore}}</div>
+    <div class="player2">{{players.[1].deviceName}}: {{players.[1].totalScore}}</div>
   {{/with}}
   <h3>Your Matches</h3>
   <ul>
