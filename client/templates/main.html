@@ -1,15 +1,22 @@
 <body>
   <header class='head-container'>
-    <div><h3>StackMatch</h3></div>
+    <div>
+      <h1>
+        <i class='fa fa-cubes'></i>
+        StackMatch
+      </h1>
+    </div>
     {{> GameMessages}}
   </header>
 
-  <section class='grid-container'>
-    {{> Grid}}
-  </section>
+  <section class='content-container'>
+    <section class='grid-container'>
+      {{> Grid}}
+    </section>
 
-  <section class='game-control-container'>
-    {{> GameControl}}
+    <section class='game-control-container'>
+      {{> GameControl}}
+    </section>
   </section>
 
   <footer class='matches-container'>

@@ -29,6 +29,7 @@ Meteor.methods ({
       players: [{device: deviceId, matches: [], totalScore: 0, deviceName: 'Purple' }],
       timestamp: new Date().toISOString()
     });
+    //console.log('game added')
   },
 
   removeMyGame: function(gameId, deviceId) {

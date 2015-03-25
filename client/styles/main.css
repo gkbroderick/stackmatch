@@ -1,3 +1,13 @@
+html{
+font-size: 100%;
+}
+
+body {
+  background-color: #3f5467;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 1em;
+}
+
 ul {
   list-style-type: none;
   padding: 20px;
@@ -10,25 +20,28 @@ li {
   height: 50px;
   border: 1px solid black;
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
   margin: 4px 2px 4px 2px;
   text-align: center;
   vertical-align: middle;
   color: white;
-  font-size: 2em;
+  font-size: 1.75em;
 }
 
 div.tiny-score {
   font-size: 0.5em;
-}
-
-.grid-container {
-  width: 600px;
+  margin-top: -7px;
 }
 
 .matches-container {
   width: 100px;
   display: inline;
+}
+
+.scoreboard {
+  overflow: hidden;
+  background: white;
+  border-radius: 5px;
 }
 
 .waiting-queue {
@@ -48,15 +61,24 @@ li.turned-up.player-1 {
 }
 
 header.head-container {
+  color: lightblue;
+}
+
+section.content-container {
+  overflow: hidden;
+  width: 100%;
   
 }
 
-section.grid-container{
+section.grid-container {
+  width: 600px;
   float: left;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 section.game-control-container {
-  float:right;
+  float: right;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 footer.match-container {

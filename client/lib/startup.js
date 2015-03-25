@@ -1,7 +1,7 @@
 Meteor.startup(function() {
   Session.set('message', 'test message');
   if (!(localStorage.getItem('sm_deviceId'))) {
-    // if no sm_deviceId, then try to get it from sm_gameId
+    // if no sm_deviceId, then try to get it from sm_gameId query
     
     // if search fails genereate new id
     var newId = new Meteor.Collection.ObjectID;
