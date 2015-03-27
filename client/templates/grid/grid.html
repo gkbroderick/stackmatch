@@ -1,7 +1,9 @@
 <template name='Grid'>
-  <ul>
-    {{#each shuffledCards}}
-      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
-    {{/each}}
-  </ul>
+  <section class='grid-container'>
+    <ul>
+      {{#each shuffledCards}}
+        <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
+      {{/each}}
+    </ul>
+  </section>
 </template>

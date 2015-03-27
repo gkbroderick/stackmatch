@@ -2,17 +2,19 @@ Template.Grid.helpers ({
   shuffledCards: function() {
     if (Session.get('gameId')) {
       var curGameId = Session.get('gameId');
-      var game = Games.findOne(curGameId, {
-        transform: function(doc) {
-          for (i = 0; i < doc.grid.length; i++) {
-            if (doc.grid[i].class === 'turned-down') {
-              doc.grid[i].val = '';
-              doc.grid[i].score = '';
-            }
-          }
-          return doc
-        }
-      });
+      var game = Grids.findOne(curGameId);
+      //console.log(game);
+      // var game = Games.findOne(curGameId, {
+      //   transform: function(doc) {
+      //     for (i = 0; i < doc.grid.length; i++) {
+      //       if (doc.grid[i].class === 'turned-down') {
+      //         doc.grid[i].val = '';
+      //         doc.grid[i].score = '';
+      //       }
+      //     }
+      //     return doc
+      //   }
+      // });
 
       if (game) return game.grid;
       return false;
@@ -22,13 +24,14 @@ Template.Grid.helpers ({
 
 Template.Grid.events({
   'click li': function(evt) {
+    evt.preventDefault();
     var thisMove = {
-      cardIdx: parseInt(event.target.id.split('-')[1]),
+      cardIdx: parseInt(evt.target.id.split('-')[1]),
       turnIdx: 1,    // 1 or 2
       playerIdx: 1   // 0 or 1
     };
+
     var curGameData = Games.findOne({_id: Session.get('gameId')});
-    //console.log(curGameData);
     var lastMove = curGameData.moves.pop();
 
     if (curGameData.grid[thisMove.cardIdx].class.indexOf('turned-up') > -1) return false;
@@ -49,5 +52,6 @@ Template.Grid.events({
     if (Session.get('deviceId') === curGameData.players[thisMove.playerIdx].device) {
       Session.set('message', Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove));
     }
+    evt.stopPropagation();
   }
 });

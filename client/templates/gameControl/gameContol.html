@@ -1,12 +1,14 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
     <input type=button id='leaveGame' value='Leave Game'>
+    {{> Grid}}
+    {{> Matches}}
   {{else}}
     <input type=button id='newGame' value='Start New Game'>
-    <p>Select a game to join it:</p>
+    <p>Click a game below to join it.</p>
     {{#each gamesWaiting}}
-      <p id='{{_id}}' class='waiting-queue'>Player: {{players.[0].device}}
-        <br>Started a game at: {{timestamp}}
+      <p id='{{_id}}' class='waiting-queue'>
+        <i class="fa fa-qrcode"></i> Waiting for challenger. (Game created at {{formatDate timestamp 'LT'}})
       </p>
     {{/each}}
   {{/if}}
