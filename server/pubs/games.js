@@ -14,7 +14,7 @@ Meteor.publish('myGame', function (gameId) {
   check(gameId, String);
 
   var fixGrid = function(array) {
-    console.log('fixGrid');
+    //console.log('fixGrid');
     for (i = 0; i < array.length; i++) {
       if (array[i].class === 'turned-down') {
         array[i].val = '';
@@ -29,17 +29,17 @@ Meteor.publish('myGame', function (gameId) {
   var gridArray;
   var handle = cursor.observeChanges({
     removed: function(id) {
-      console.log('removed');
-      self.removed("grids", gameId);
+      //console.log('removed');
+      self.removed("grids", id);
     },
     changed: function(id, fields) {
-      console.log('changed');
+      //console.log('changed');
       gridArray = fixGrid(fields.grid);
-      self.changed("grids", gameId, {grid: gridArray});
+      self.changed("grids", id, {grid: gridArray});
     }
   });
 
-  console.log('init');
+  //console.log('init');
   gridArray = fixGrid(game.grid);
   self.added('grids', gameId, {grid: gridArray});
   self.ready();

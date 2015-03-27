@@ -41,7 +41,10 @@ Meteor.methods ({
   },
 
   flipUpCard: function(gameId, thisMove, lastMove) {
-    Games.update({_id: gameId, 'grid.idx': thisMove.cardIdx}, {$set: {'grid.$.class': 'turned-up player-' + thisMove.playerIdx}, $push: {moves: thisMove}});
+    Games.update(
+      {_id: gameId, 'grid.idx': thisMove.cardIdx},
+      {$set: {'grid.$.class': 'turned-up player-' + thisMove.playerIdx}, $push: {moves: thisMove}}
+    );
     
     if (thisMove.turnIdx === 2) {
       curGameData = Games.findOne({_id: gameId});
