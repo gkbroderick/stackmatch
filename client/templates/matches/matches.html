@@ -1,14 +1,24 @@
 <template name='Matches'>
-  <div class="scoreboard">
+  <section class="scoreboard">
     {{#with scoreBoard}}
       <div class="player1">{{players.[0].deviceName}}: {{players.[0].totalScore}}</div>
       <div class="player2">{{players.[1].deviceName}}: {{players.[1].totalScore}}</div>
     {{/with}}
-  </div>
-  <h3>Your Matches</h3>
+  </section>
+  <section class='match-container my-matches'>
+  <h3>My Matches</h3>
   <ul class="scoreboard">
-    {{#each yourMatches}}
+    {{#each gameMatches.mine}}
       <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
     {{/each}}
   </ul>
+  </section>
+  <section class='match-container your-matches'>
+  <h3>Challengers's Matches</h3>
+  <ul class="scoreboard">
+    {{#each gameMatches.yours}}
+      <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'><div class="tiny-score">{{score}}</div></li>
+    {{/each}}
+  </ul>
+  </section>
 </template>

@@ -11,6 +11,8 @@ Meteor.publish('allGames', function(gameId) {
 // cards that only reveals the val/score of cards that have been turned up.
 Meteor.publish('myGame', function (gameId) {
   var self = this;
+  if (!gameId) return;
+
   check(gameId, String);
 
   var fixGrid = function(array) {
@@ -45,7 +47,7 @@ Meteor.publish('myGame', function (gameId) {
   self.ready();
 
   self.onStop(function () {
-    console.log('stop');
+    //console.log('stop');
     handle.stop();
   });
 });

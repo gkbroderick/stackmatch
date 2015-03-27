@@ -26,7 +26,7 @@ Template.Grid.events({
   'click li': function(evt) {
     evt.preventDefault();
     var thisMove = {
-      cardIdx: parseInt(event.target.id.split('-')[1]),
+      cardIdx: parseInt(evt.target.id.split('-')[1]),
       turnIdx: 1,    // 1 or 2
       playerIdx: 1   // 0 or 1
     };

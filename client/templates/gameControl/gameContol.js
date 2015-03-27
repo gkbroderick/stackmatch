@@ -10,7 +10,7 @@ Template.GameControl.helpers ({
 
 Template.GameControl.events ({
   'click p.waiting-queue': function(evt) {
-    var joinGameId = event.target.id
+    var joinGameId = evt.target.id;
 
     Games.update(
       {_id: joinGameId},
@@ -24,7 +24,7 @@ Template.GameControl.events ({
     );
   },
 
-  'click #newGame': function() {
+  'click #newGame': function(evt) {
     Meteor.call('newGame', Session.get('deviceId'), function (err, res) {
       var newGameId = res;
       Session.set('gameId', newGameId);
@@ -34,7 +34,7 @@ Template.GameControl.events ({
     });
   },
   
-  'click #leaveGame': function() {
+  'click #leaveGame': function(evt) {
     var conf = window.confirm('Really? End this game?');
     if (conf == true) {
       Meteor.call('removeMyGame', Session.get('gameId'), Session.get('deviceId'));
