@@ -1,9 +1,12 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
     <input type=button id='leaveGame' value='Leave Game'>
-    {{> Grid}}
-    {{> Matches}}
-  {{else}}
+    <h1 class="alert-blink">In Progress</h1>
+    <section class="game-ui-flex">
+      {{> Grid}}
+      {{> Matches}}
+    </section>
+    {{else}}
     <input type=button id='newGame' value='Start New Game'>
     <p>Click a game below to join it.</p>
     {{#each gamesWaiting}}
