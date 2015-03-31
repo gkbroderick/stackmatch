@@ -1,119 +1,121 @@
 
-li.icon-1:before {
+.icon-1:before {
   /*bomb*/
   content: "\f1e2";
   font-family: FontAwesome;
 }
 
-li.icon-2:before {
+.icon-2:before {
   /*bug*/
   content: "\f188";
   font-family: FontAwesome;
 }
 
-li.icon-3:before {
+.icon-3:before {
   /*binoculars*/
   content: "\f1e5";
   font-family: FontAwesome;
 }
 
-li.icon-4:before {
+.icon-4:before {
   /*bell*/
   content: "\f0a2";
   font-family: FontAwesome;
 }
 
-li.icon-5:before {
+.icon-5:before {
   /*apple*/
   content: "\f179";
   font-family: FontAwesome;
 }
 
-li.icon-6:before {
+.icon-6:before {
   /*automobile*/
   content: "\f1b9";
   font-family: FontAwesome;
 }
 
-li.icon-7:before {
+.icon-7:before {
   /*github*/
   content: "\f09b";
   font-family: FontAwesome;
 }
 
-li.icon-8:before {
+.icon-8:before {
   /*bicycle*/
   content: "\f206";
   font-family: FontAwesome;
 }
 
-li.icon-9:before {
+.icon-9:before {
   /*clock*/
+/*  position: absolute;
+  top: -100%;*/
   content: "\f017";
   font-family: FontAwesome;
 }
 
-li.icon-10:before {
+.icon-10:before {
   /*cogs*/
   content: "\f085";
   font-family: FontAwesome;
 }
 
-li.icon-11:before {
+.icon-11:before {
   /*coffee*/
   content: "\f0f4";
   font-family: FontAwesome;
 }
 
-li.icon-12:before {
+.icon-12:before {
   /*flask*/
   content: "\f0c3";
   font-family: FontAwesome;
 }
 
-li.icon-13:before {
+.icon-13:before {
   /*medkit*/
   content: "\f0fa";
   font-family: FontAwesome;
 }
 
-li.icon-14:before {
+.icon-14:before {
   /*microphone*/
   content: "\f130";
   font-family: FontAwesome;
 }
 
-li.icon-15:before {
+.icon-15:before {
   /*music*/
   content: "\f001";
   font-family: FontAwesome;
 }
 
-li.icon-16:before {
+.icon-16:before {
   /*moon-o*/
   content: "\f186";
   font-family: FontAwesome;
 }
 
-li.icon-17:before {
+.icon-17:before {
   /*paper-plane-o*/
   content: "\f1d9";
   font-family: FontAwesome;
 }
 
-li.icon-18:before {
+.icon-18:before {
   /*mortar-board*/
   content: "\f19d";
   font-family: FontAwesome;
 }
 
-li.icon-19:before {
+.icon-19:before {
   /*paperclip*/
   content: "\f0c6";
   font-family: FontAwesome;
 }
 
-li.icon-20:before {
+.icon-20:before {
   /*rocket*/
   content: "\f135";
   font-family: FontAwesome;
