@@ -1,3 +1,9 @@
+li.icon-:before {
+  content: "\f06c";
+  font-family: FontAwesome;
+  font-size: 1.7em;
+  opacity: 0.5;
+}
 
 li.icon-1:before {
   /*bomb*/
