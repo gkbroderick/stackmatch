@@ -50,8 +50,7 @@ Template.Grid.events({
     }
 
     if (Session.get('deviceId') === curGameData.players[thisMove.playerIdx].device) {
-      Session.set('message', Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove));
+      Meteor.call('flipUpCard', Session.get('gameId'), thisMove, lastMove);
     }
-    evt.stopPropagation();
   }
 });

@@ -45,19 +45,19 @@ Meteor.methods ({
       {_id: gameId, 'grid.idx': thisMove.cardIdx},
       {$set: {'grid.$.class': 'turned-up player-' + thisMove.playerIdx}, $push: {moves: thisMove}}
     );
-    
+
     if (thisMove.turnIdx === 2) {
       curGameData = Games.findOne({_id: gameId});
       if (curGameData.grid[thisMove.cardIdx].val === curGameData.grid[lastMove.cardIdx].val) {
         var thisMatch = curGameData.grid[thisMove.cardIdx];
         if (thisMove.playerIdx === 0) {
           Games.update(
-            {_id: gameId}, 
+            {_id: gameId},
             {$set: {'players.0.totalScore': curGameData.players[0].totalScore + thisMatch.score}, $push: {'players.0.matches': thisMatch}}
           );
         } else {
           Games.update(
-            {_id: gameId}, 
+            {_id: gameId},
             {$set: {'players.1.totalScore': curGameData.players[1].totalScore + thisMatch.score}, $push: {'players.1.matches': thisMatch}}
           );
         }

@@ -46,6 +46,7 @@ li {
 .tiny-score {
   margin: 0;
   font-size: 0.5em;
+  margin-top: -12px;
 }
 
 .scoreboard {
