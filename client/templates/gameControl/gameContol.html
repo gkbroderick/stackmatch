@@ -6,8 +6,8 @@
       {{> Matches}}
     </section>
     {{else}}
-    <input type=button id='newGame' value='Start New Game'>
-    <p>Click a game below to join it.</p>
+    <input type=button id='newGame' value='Queue up a new game'>
+    <p>Or click a queued game below to join in.</p>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>
         <i class="fa fa-toggle-right"></i> Waiting for challenger. (Game created at {{formatDate timestamp 'LT'}})
