@@ -1,25 +1,44 @@
 Template.Matches.helpers({
-  gameMatches: function() {
-    var gameMatches = {};
+  scoreBoard: function() {
+    var gameScore = {
+      my: {},
+      your: {},
+    };
     var curGame = Games.findOne({_id: Session.get('gameId')}, {
       transform: function(doc) {
-        for (i = 0; i<=1; i++) {
+        var lastMove = doc.moves.pop();
+        if (lastMove) {
+          if (lastMove.turnIdx === 1) {
+            doc.players[lastMove.playerIdx].myTurn = true;
+          } else if (lastMove.playerIdx === 0) {
+            doc.players[1].myTurn = true;
+          } else {
+            doc.players[0].myTurn = true;
+          }
+        } else {
+          if (doc.players.length === 2) doc.players[1].myTurn = true;
+        }
+
+        for (i = 0; i <= 1; i++) {
           if (doc.players[i]) {
             if (doc.players[i].device === Session.get('deviceId')) {
-              gameMatches.mine = doc.players[i].matches;
+              gameScore.my.playerIdx = i;
+              gameScore.my.name = doc.players[i].deviceName;
+              gameScore.my.score = doc.players[i].totalScore;
+              gameScore.my.turn = doc.players[i].myTurn;
+              gameScore.my.matches = doc.players[i].matches;
             } else {
-              gameMatches.yours = doc.players[i].matches;
+              gameScore.your.playerIdx = i;
+              gameScore.your.name = doc.players[i].deviceName;
+              gameScore.your.score = doc.players[i].totalScore;
+              gameScore.your.turn = doc.players[i].myTurn;
+              gameScore.your.matches = doc.players[i].matches;
             }
           }
         }
-        return gameMatches;
+        return gameScore;
       }
     });
-    if (gameMatches.mine && gameMatches.yours) return gameMatches;
-  },
-
-  scoreBoard: function() {
-    var curGame = Games.findOne({_id: Session.get('gameId')});
-    if (curGame) return curGame;
+    if (gameScore) return gameScore;
   }
 });

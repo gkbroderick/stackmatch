@@ -3,7 +3,6 @@ Template.Grid.helpers ({
     if (Session.get('gameId')) {
       var curGameId = Session.get('gameId');
       var game = Grids.findOne(curGameId);
-      //console.log(game);
       // var game = Games.findOne(curGameId, {
       //   transform: function(doc) {
       //     for (i = 0; i < doc.grid.length; i++) {
