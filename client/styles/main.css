@@ -65,7 +65,7 @@ li {
 }
 
 .tiny-score {
-  margin: 0;
+  margin: -10px;
   font-size: 0.5em;
 }
 
@@ -133,12 +133,12 @@ header.head-container {
   padding: 0.5rem 0 0.8rem;
 }
 
-.player1 {
+.player0 {
   color: indigo;
   font-weight: bold;
 }
 
-.player2 {
+.player1 {
   color: darkgreen;
   font-weight: bold;
 }

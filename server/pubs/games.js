@@ -36,8 +36,10 @@ Meteor.publish('myGame', function (gameId) {
     },
     changed: function(id, fields) {
       //console.log('changed');
-      gridArray = fixGrid(fields.grid);
-      self.changed("grids", id, {grid: gridArray});
+      if (fields.grid) {
+        gridArray = fixGrid(fields.grid);
+        self.changed("grids", id, {grid: gridArray});
+      }
     }
   });
 
