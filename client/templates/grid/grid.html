@@ -2,8 +2,9 @@
   <section class='grid-container'>
     <ul>
       {{#each shuffledCards}}
-        <li id='grid-{{idx}}' class='{{class}} icon-{{val}}'>
-          <div class="tiny-score">{{score}}</div>
+        <li id='grid-{{idx}}' class='{{class}}'>
+          <span class='icon-{{val}}'></span>
+          <p class='tiny-score'>{{score}}</p>
         </li>
       {{/each}}
     </ul>
