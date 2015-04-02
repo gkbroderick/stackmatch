@@ -7,7 +7,11 @@
     </section>
     <section class="scoreboard scoreboard-p1">
       <div class="score player{{your.playerIdx}} {{whoseTurn your.turn}}">
-        {{your.name}}: {{your.score}}
+        {{your.name}}: 
+        {{#if your.url}}
+          <a class='alert-blink' href='{{your.url}}'>Game Link</a>
+        {{/if}}
+        {{your.score}}
       </div>
     </section>
 

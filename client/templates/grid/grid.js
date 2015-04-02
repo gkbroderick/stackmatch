@@ -14,7 +14,6 @@ Template.Grid.helpers ({
       //     return doc
       //   }
       // });
-
       if (game) return game.grid;
       return false;
     }

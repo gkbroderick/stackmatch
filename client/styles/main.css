@@ -69,15 +69,15 @@ li {
   font-size: 1.8rem;
   position: relative;
   bottom: 6px;
-/*  margin-top: -5px;*/
 }
 
 .tiny-score {
   font-size: 1rem;
   position: absolute;
-  right: 20px;
-  bottom: 0px;
-/*  margin-top: -10px;*/
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto 1px auto;
 }
 
 .scoreboard {
