@@ -7,7 +7,7 @@
     </section>
     {{else}}
     <input type=button id='newGame' value='Queue up a new game'>
-    <p>Or click a queued game below to join in.</p>
+    <h4 class="queue-message">Or click a queued game below to join in.</h4>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>
         <i class="fa fa-toggle-right"></i> Waiting for challenger. (Game created at {{formatDate timestamp 'LT'}})
