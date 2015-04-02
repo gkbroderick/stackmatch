@@ -47,6 +47,7 @@ input[type=button]:hover, input[type=button]:focus{
 }
 
 li {
+  position: relative;
   box-sizing: content-box;
   display: inline-block;
   width: 50px;
@@ -64,21 +65,19 @@ li {
   transition: background-position 0.3s, color 0.3s;
 }
 
-/*.card-contents {
-  display: flex;
-  flex-flow: column wrap;
-  display: -webkit-flex;
-  -webkit-flex-flow: column wrap;
-}*/
-
-/*.icon {
-  flex-basis: 100%;
-  -webkit-flex-basis: 100%;
-}*/
+.icon {
+  font-size: 1.8rem;
+  position: relative;
+  bottom: 6px;
+/*  margin-top: -5px;*/
+}
 
 .tiny-score {
-  font-size: 0.6em;
-  margin-top: -10px;
+  font-size: 1rem;
+  position: absolute;
+  right: 20px;
+  bottom: 0px;
+/*  margin-top: -10px;*/
 }
 
 .scoreboard {

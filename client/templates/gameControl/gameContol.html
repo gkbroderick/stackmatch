@@ -7,11 +7,16 @@
     </section>
     {{else}}
     <input type=button id='newGame' value='Queue up a new game'>
-    <h4 class="queue-message">Or click a queued game below to join in.</h4>
+    <h4 class='queue-message'>
+      ... and wait for someone to challenge you. Or click on a queued game below to join someone else's game.
+    </h4>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>
-        <i class="fa fa-toggle-right"></i> Waiting for challenger. (Game created at {{formatDate timestamp 'LT'}})
+        <i class="fa fa-toggle-right"></i> Waiting for challenger (Game created at {{formatDate timestamp 'LT'}})
       </p>
     {{/each}}
+    {{#unless gamesWaiting}}
+      <h4>No games currently in queue! {{timestamp}}</h4>
+    {{/unless}}
   {{/if}}
 </template>
