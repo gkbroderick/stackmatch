@@ -34,6 +34,9 @@ Template.Matches.helpers({
               gameScore.your.turn = doc.players[i].myTurn;
               gameScore.your.matches = doc.players[i].matches;
             }
+          } else {
+            gameScore.your.name = 'Waiting for challenger';
+            gameScore.your.turn = true;
           }
         }
         return gameScore;
