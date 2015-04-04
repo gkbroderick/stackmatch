@@ -12,6 +12,17 @@
       </section>
     {{/if}}
 
+    
+      <!-- {{#if my}}
+      <section class='overlay'>
+        <div class='overlay-content'>
+          <h2 class='alert-blink'>Opponent has left the game.</h2>
+          <h3 >Please press the leave game button.</h3>
+        </div>
+      </section>
+      {{/if}} -->
+    
+    
     <section class="scoreboard scoreboard-p0">
       <div class="score player{{my.playerIdx}} {{whoseTurn my.turn}}">
         {{my.name}}: {{my.score}}
@@ -22,6 +33,7 @@
         {{your.name}}: {{your.score}}
       </div>
     </section>
+    
 
     <div class="matches">
       <section class='match-container my-matches'>
