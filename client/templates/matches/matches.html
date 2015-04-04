@@ -1,5 +1,17 @@
 <template name='Matches'>
   {{#with scoreBoard}}
+
+    {{#if your.url}}
+      <section class='overlay'>
+        <div class='overlay-content'>
+          <h2 class='alert-blink'>Waiting for Challenger!</h2>
+          <h3 >To invite someone to play with you, copy and send them this link:</h3>
+          <p class='alert-blink'>{{your.url}}</p>
+          <p> Your game will start when an opponent joins.</p>
+        </div>
+      </section>
+    {{/if}}
+
     <section class="scoreboard scoreboard-p0">
       <div class="score player{{my.playerIdx}} {{whoseTurn my.turn}}">
         {{my.name}}: {{my.score}}
@@ -7,11 +19,7 @@
     </section>
     <section class="scoreboard scoreboard-p1">
       <div class="score player{{your.playerIdx}} {{whoseTurn your.turn}}">
-        {{your.name}}: 
-        {{#if your.url}}
-          <a class='alert-blink' href='{{your.url}}'>Game Link</a>
-        {{/if}}
-        {{your.score}}
+        {{your.name}}: {{your.score}}
       </div>
     </section>
 
@@ -39,5 +47,6 @@
         </ul>
       </section>
     </div>
+
   {{/with}}
 </template>

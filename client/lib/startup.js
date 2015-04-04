@@ -14,8 +14,8 @@ Meteor.startup(function() {
   // override current game if linked to new game
   if (window.location.hash) {
     var urlHash = window.location.hash.substring(1);
+    var urlOrigin = window.location.origin;
     if (urlHash.length === 17) {
-
       Session.set('gameId', '');
       localStorage.setItem('sm_gameId', '');
       Games.update(
@@ -24,6 +24,7 @@ Meteor.startup(function() {
         function(err, res) {
           Session.set('gameId', urlHash);
           localStorage.setItem('sm_gameId', urlHash);
+          window.location.href = urlOrigin;
 
           Session.set('message', 'Game on! Player 2 has the first move.');
         }
