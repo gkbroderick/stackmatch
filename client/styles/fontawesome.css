@@ -5,7 +5,7 @@ li.icon-:before {
   opacity: 0.5;
 }
 
-.icon-1:before {
+.icon-0:before {
   /*bomb*/
   content: "\f1e2";
   font-family: FontAwesome;

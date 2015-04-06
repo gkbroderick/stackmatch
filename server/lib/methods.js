@@ -1,8 +1,8 @@
 Meteor.methods ({
   newGame: function(deviceId) {
-    var cards = [];
+    var cards = [1,1,1];
     var score = 0
-    for (i=1; i<=20; i++) {
+    for (i=4; i<=28; i++) {
       cards.push(i);
     }
     // make a random shuffle of all pairs and assign score
