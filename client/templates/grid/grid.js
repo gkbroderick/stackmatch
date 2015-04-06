@@ -3,17 +3,6 @@ Template.Grid.helpers ({
     if (Session.get('gameId')) {
       var curGameId = Session.get('gameId');
       var game = Grids.findOne(curGameId);
-      // var game = Games.findOne(curGameId, {
-      //   transform: function(doc) {
-      //     for (i = 0; i < doc.grid.length; i++) {
-      //       if (doc.grid[i].class === 'turned-down') {
-      //         doc.grid[i].val = '';
-      //         doc.grid[i].score = '';
-      //       }
-      //     }
-      //     return doc
-      //   }
-      // });
 
       if (game) return game.grid;
       return false;
