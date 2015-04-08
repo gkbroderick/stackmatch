@@ -6,10 +6,13 @@
       {{> Matches}}
     </section>
     {{else}}
-    <h4 class='queue-message instruction-text'>
-      Gridmatch is based on the turn-based card matching game commonly known as concentration. Each player takes a turn flipping two cards face up. If the cards match, they will add to their score and are removed from play. If the cards don't match, they are flipped back face down before the next turn. The only twists in this version are: Each matching pair has a score associated with them that is added to your total, should you make a match. Also, beware the "bomb" cards, as they will subtract points when accidentally matched. Enjoy!
-    </h4><br>
-    <input type=button id='newGame' value='Queue up a new game'>
+    <section class='queue-message instruction-text'>
+      <p>Gridmatch is based on the turn-based card matching game commonly known as concentration.</p>
+      <p>Each player takes a turn flipping two cards face up. If the cards match, they will add to their score and are removed from play. If the cards don't match, they are flipped back face down before the next turn.</p>
+      <p>The twists in this version are that each matching pair has a different score added to your total, and to beware of the “bomb” cards! They will subtract points when accidentally matched.</p>
+      <p>Enjoy!</p>
+    </section>
+    <input type=button id='newGame' value='Queue up a New Game'>
     <h4 class='queue-message'>
       ... and wait for someone to challenge you. Or click on a queued game below to join someone else's game.
     </h4>
@@ -19,7 +22,7 @@
       </p>
     {{/each}}
     {{#unless gamesWaiting}}
-      <h4 class='queue-message'>No games currently in queue! {{timestamp}}</h4>
+      <h4 class='queue-message instruction-text no-queue'><strong>No Games Currently in Queue!</strong> {{timestamp}}</h4>
     {{/unless}}
   {{/if}}
 </template>
