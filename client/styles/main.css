@@ -40,7 +40,45 @@ input[type=button]:hover, input[type=button]:focus{
   transition: background-color 0.5s, color 0.5s, border-color 0.5s;
 }
 
-/**Card Styling*/
+/*GameControl Template Specific Styling*/
+.queue-message {
+  color: #EFEFEF;
+  max-width: 700px;
+}
+
+.instruction-text {
+  margin-top: 0.8rem;
+  margin-bottom: 1.8rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  border: 2px solid #EFEFEF;
+}
+.instruction-text p {
+  margin: 0.7em 0;
+}
+
+.instruction-text.no-queue {
+  text-align: center;
+  max-width: 440px;
+  padding: 13px 8px 15px;
+}
+
+.waiting-queue{
+  text-align: center;
+  max-width: 440px;
+  padding: 13px 8px 15px;
+  background-color: #EFEFEF;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.waiting-queue:hover{
+  background-color: grey;
+  transition: background-color 2s;
+}
+
+
+/**Card Grid/Match-container Template Styling*/
 .grid-container > ul {
   list-style-type: none;
   padding: 0;
@@ -108,7 +146,7 @@ li.turned-up.player-1 {
 }
 
 
-/*Module layout and styling*/
+/*Matches Template Styling*/
 header.head-container {
   color: lightblue;
 }
@@ -155,8 +193,13 @@ header.head-container {
   font-weight: bold;
 }
 
+.score {
+  line-height: 30px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
 
-/*Flexbox layout setup*/
+/*Flexbox layout setup for Game board*/
 .game-ui-flex {
   max-width: 2000px;
   text-align: center;
@@ -197,23 +240,7 @@ header.head-container {
   text-align: center;
 }
 
-
-/*GameControl*/
-.queue-message {
-  color: #EFEFEF;
-}
-
-.waiting-queue{
-  text-align: center;
-  max-width: 440px;
-  padding: 13px 8px 15px;
-  background-color: white;
-  border-radius: 5px;
-  margin-bottom: 5px;
-}
-
-
-/*Media query to re-order flexboxes*/
+/*Media query to re-order flexbox Layout*/
 @media(max-width: 975px) {
   .grid-container{
     flex-basis: 100%;
@@ -235,79 +262,7 @@ header.head-container {
   }
 }
 
-
-/*Score transitions and animations*/
-.score {
-  line-height: 30px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  transition: font-size 0.6s;
-}
-
-.alert-blink.score{
-  font-size: 1.4rem;
-  transition: font-size 0.6s;
-}
-
-.alert-blink {
-  color: red;
-  animation: color 1s infinite;
-  animation-direction: alternate;
-  animation-name: alert-blink;
-  -moz-animation: color 1s infinite;
-  -moz-animation-direction: alternate;
-  -moz-animation-name: alert-blink;
-  -webkit-animation: color 1s infinite;
-  -webkit-animation-direction: alternate;
-  -webkit-animation-name: alert-blink;
-}
-
-@keyframes alert-blink {
-  to {
-    color: orange;
-    box-shadow: 0 0 0 0 yellow;
-  }
-}
-@-webkit-keyframes alert-blink {
-  to {
-    color: orange;
-    -webkit-box-shadow: 0 0 0 0 yellow;
-  }
-}
-@-moz-keyframes alert-blink {
-  to {
-    color: orange;
-    -moz-box-shadow: 0 0 0 0 yellow;
-  }
-}
-
-.alert-player-turn {
-  box-shadow: 0 0 5px 5px orange;
-  -moz-box-shadow: 0 0 5px 5px orange;
-  -webkit-box-shadow: 0 0 5px 5px orange;
-  border-radius: 5px;
-  -webkit-animation: glow 2.0s linear infinite;
-  -moz-animation: glow 2.0s linear infinite;
-  -ms-animation: glow 2.0s linear infinite;
-  -o-animation: glow 2.0s linear infinite;
-  animation: glow 2.0s linear infinite;
-}
-
-  @keyframes glow {
-    0%  { box-shadow: none; }
-    25% { box-shadow: 0 0 20px yellow; }
-    50% { box-shadow: 0 0 20px orange; }
-    75% { box-shadow: 0 0 20px yellow; }
-    100%  { box-shadow: none; }
-  }
-
-  @-webkit-keyframes glow {
-    0%  { box-shadow: none; }
-    25% { box-shadow: 0 0 20px yellow; }
-    50% { box-shadow: 0 0 20px orange; }
-    75% { box-shadow: 0 0 20px yellow; }
-    100%  { box-shadow: none; }
-  }
+/*Modal window*/
 
 .overlay {
   position: absolute;
@@ -324,6 +279,7 @@ header.head-container {
   z-index: 99999;
   opacity:50;
   border: 2px solid white;
+  transition: opacity 10s;
 }
 .overlay-content {
   padding: 10px;
@@ -336,11 +292,4 @@ header.head-container {
   color: #EFEFEF;
 }
 
-.instruction-text {
-  max-width: 700px;
-  margin: 0.8rem;
-  padding: 0.8rem;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
-  border: 2px solid white;
-}
+
