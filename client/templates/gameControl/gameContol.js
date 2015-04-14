@@ -1,6 +1,9 @@
 Template.GameControl.helpers ({
   gamesWaiting: function() {
-    return Games.find({players: {$size: 1}});
+    var gameList = Games.find({players: {$size: 1}}).fetch();
+    if (gameList.length > 0) {
+      return gameList;
+    }
   },
 
   gameInProgress: function() {
