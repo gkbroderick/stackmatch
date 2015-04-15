@@ -262,13 +262,22 @@ header.head-container {
   }
 }
 
+#new-game {
+  
+  
+}
+
+#new-game .form-spacing-two {
+  
+}
+
 /*Modal window*/
 
 .overlay {
   position: absolute;
   box-sizing: content-box;
   max-width: 700px;
-  height: 220px;
+  height: 230px;
   top: 30%;
   right: 0;
   bottom: 0;
@@ -291,5 +300,3 @@ header.head-container {
   left: 0;
   color: #EFEFEF;
 }
-
-

@@ -27,7 +27,7 @@ Template.GameControl.events ({
     );
   },
 
-  'submit #newGameForm': function(evt) {
+  'submit #new-game-form': function(evt) {
     evt.preventDefault();
     var gameSize = evt.target.gameSize.value;
     Meteor.call('newGame', Session.get('deviceId'), gameSize, function (err, res) {
