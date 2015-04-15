@@ -1,13 +1,13 @@
 .alert-blink {
-  color: #ffa500;
+  color: #ff4500;
   /*Shade of orange: http://www.color-hex.com/color/ffa500*/
-  animation: color 1s infinite;
+  animation: color 2s infinite;
   animation-direction: alternate;
   animation-name: alert-blink;
-  -moz-animation: color 1s infinite;
+  -moz-animation: color 2s infinite;
   -moz-animation-direction: alternate;
   -moz-animation-name: alert-blink;
-  -webkit-animation: color 1s infinite;
+  -webkit-animation: color 2s infinite;
   -webkit-animation-direction: alternate;
   -webkit-animation-name: alert-blink;
 }

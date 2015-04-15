@@ -27,8 +27,10 @@ Template.GameControl.events ({
     );
   },
 
-  'click #newGame': function(evt) {
-    Meteor.call('newGame', Session.get('deviceId'), function (err, res) {
+  'submit #newGameForm': function(evt) {
+    evt.preventDefault();
+    var gameSize = evt.target.gameSize.value;
+    Meteor.call('newGame', Session.get('deviceId'), gameSize, function (err, res) {
       var newGameId = res;
       Session.set('gameId', newGameId);
       localStorage.setItem ('sm_gameId', Session.get('gameId'));

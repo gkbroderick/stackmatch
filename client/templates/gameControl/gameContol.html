@@ -1,6 +1,6 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
-    <input type=button id='leaveGame' value='Leave Game'>
+    <input type='submit' id='leaveGame' value='Leave Game'>
     <section class="game-ui-flex">
       {{> Grid}}
       {{> Matches}}
@@ -12,7 +12,11 @@
       <p>The twists in this version are that each matching pair has a different score added to your total, and to beware of the “bomb” cards! They will subtract points when accidentally matched.</p>
       <p>Enjoy!</p>
     </section>
-    <input type=button id='newGame' value='Queue up a New Game'>
+    <form id='newGameForm'>
+      <input type='submit' id='newGame' value='Queue up a New Game'>
+      <input type='radio' id='toggle-little' name='gameSize' value='Little' checked>Little
+      <input type='radio' id='toggle-big' name='gameSize' value='Big'>Big
+    </form>
     <h4 class='queue-message'>
       ... and wait for someone to challenge you. Or click on a queued game below to join someone else's game.
     </h4>
