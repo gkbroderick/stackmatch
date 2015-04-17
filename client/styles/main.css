@@ -19,6 +19,13 @@ h1 {
   margin: 0.8rem 0;
 }
 
+#new-game-form {
+  display: flex;
+}
+
+#new-game-form .form-spacing-two {
+}
+
 input[type=submit]{
   background-color: lightblue;
   color: #5C5C5C;
@@ -33,7 +40,33 @@ input[type=submit]{
   transition: background-color 0.5s, color 0.5s, border-color 0.5s;
 }
 
-input[type=button]:hover, input[type=button]:focus{
+input[type=submit]:hover, input[type=submit]:focus{
+  background-color: #5b96a9;
+  color: #242424;
+  border-color: #44707f;
+  transition: background-color 0.5s, color 0.5s, border-color 0.5s;
+}
+
+input[type="radio"].game-size {
+  display: none;
+}
+
+input[type="radio"].game-size + label {
+  background-color: lightblue;
+  color: #5C5C5C;
+  font-size: 1rem;
+  border-radius: 5px;
+  text-align: center;
+  padding: .4rem .6rem;
+  border-top: none;
+  border-left: none;
+  border-right: .13rem #86c5da solid;
+  border-bottom: .13rem #86c5da solid;
+  transition: background-color 0.5s, color 0.5s, border-color 0.5s;
+}
+
+input[type="radio"].game-size:checked + label {
+  position: relative;
   background-color: #5b96a9;
   color: #242424;
   border-color: #44707f;
@@ -76,7 +109,6 @@ input[type=button]:hover, input[type=button]:focus{
   background-color: grey;
   transition: background-color 2s;
 }
-
 
 /**Card Grid/Match-container Template Styling*/
 .grid-container > ul {
@@ -260,15 +292,6 @@ header.head-container {
     order: 3;
     -webkit-order: 3;
   }
-}
-
-#new-game {
-  
-  
-}
-
-#new-game .form-spacing-two {
-  
 }
 
 /*Modal window*/

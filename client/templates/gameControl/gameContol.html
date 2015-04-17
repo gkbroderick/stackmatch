@@ -1,6 +1,7 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
     <input type='submit' id='leaveGame' value='Leave Game'>
+    <input type='submit' id='restartGame' value='Restart Game'>
     <section class="game-ui-flex">
       {{> Grid}}
       {{> Matches}}
@@ -17,10 +18,10 @@
         <input type='submit' id='newGame' value='Queue up a New Game'>
       </div>
       <div class='form-spacing-two'>
-        <input type='radio' id='toggle-little' name='gameSize' value='Little' checked>
-          <i class="fa fa-th-large"></i>
-        <input type='radio' id='toggle-big' name='gameSize' value='Big'>
-          <i class="fa fa-th"></i>
+        <input type='radio' id='toggle-little' class='game-size' name='gameSize' value='Little' checked>
+          <label for='toggle-little'><i class="fa fa-th-large"></i> Little (40)</label>
+        <input type='radio' id='toggle-big' class='game-size' name='gameSize' value='Big'>
+          <label for='toggle-big'><i class="fa fa-th"></i> Big (56)</label>
       </div>
     </form>
     <h4 class='queue-message'>
@@ -28,7 +29,7 @@
     </h4>
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>
-        <i class="fa fa-toggle-right"></i> Waiting for challenger (Game created at {{formatDate timestamp 'LT'}})
+        <i class="fa fa-toggle-right"></i> {{gridSize}} game waiting for challenger<br> (Game created at {{formatDate timestamp 'LT'}})
       </p>
     {{/each}}
     {{#unless gamesWaiting}}

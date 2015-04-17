@@ -1,5 +1,5 @@
 Meteor.methods ({
-  newGame: function(deviceId, gameSize) {
+  newGame: function(deviceId, gameSize, gameId) {
     var deck;
     var NewDeck = function(bombs, num10, num15, num20, num25) {
       this.bombs = bombs;
@@ -37,19 +37,17 @@ Meteor.methods ({
       return array;
     }
 
-    NewDeck.prototype.initializeGame = function() {
+    NewDeck.prototype.initializeGame = function(replayId) {
       self = this;
       var cardsShuffled = this.shuffleDeck(this.deck).map(function(value, index) {
         var score;
-        //console.log(this);
-        //console.log(value);
         if (value < self.bombs) {
           score = -30;
-        } else if (value < self.num10) {
+        } else if (value < self.bombs + self.num10) {
           score = 10;
-        } else if (value < self.num15) {
+        } else if (value < self.bombs + self.num10 + self.num15) {
           score = 15;
-        } else if (value < self.num20) {
+        } else if (value < self.bombs + self.num10 + self.num15 + self.num20) {
           score = 20;
         } else {
           score = 25;
@@ -57,12 +55,26 @@ Meteor.methods ({
         return {'idx': index, 'val': value, 'score': score, 'class': 'turned-down'};
       });
       // initialize new game entry in db
-      return Games.insert({
-        grid: cardsShuffled,
-        moves: [],
-        players: [{device: deviceId, matches: [], totalScore: 0, deviceName: 'Purple' }],
-        timestamp: new Date().toISOString()
-      });
+      if (replayId) {
+        return Games.update({_id: replayId},
+          {$set: {
+            grid: cardsShuffled,
+            moves: [],
+            'players.0.matches': [],
+            'players.0.totalScore': 0,
+            'players.1.matches': [],
+            'players.1.totalScore': 0
+          }})
+      } else {
+        return Games.insert({
+          grid: cardsShuffled,
+          gridSize: gameSize,
+          moves: [],
+          players: [{device: deviceId, matches: [], totalScore: 0, deviceName: 'Purple' }],
+          timestamp: new Date().toISOString()
+        });
+      }
+
     }
 
     if (gameSize === 'Big') {
@@ -71,7 +83,7 @@ Meteor.methods ({
       deck = new NewDeck(2,5,6,5,2); //small deck
     }
     deck.createDeck();
-    return deck.initializeGame();
+    return deck.initializeGame(gameId);
   },
 
   removeMyGame: function(gameId, deviceId) {

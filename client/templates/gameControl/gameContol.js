@@ -21,8 +21,6 @@ Template.GameControl.events ({
       function(err, res) {
         Session.set('gameId', joinGameId);
         localStorage.setItem('sm_gameId', joinGameId);
-
-        Session.set('message', 'Game on! Player 2 has the first move.');
       }
     );
   },
@@ -30,12 +28,10 @@ Template.GameControl.events ({
   'submit #new-game-form': function(evt) {
     evt.preventDefault();
     var gameSize = evt.target.gameSize.value;
-    Meteor.call('newGame', Session.get('deviceId'), gameSize, function (err, res) {
+    Meteor.call('newGame', Session.get('deviceId'), gameSize, function(err, res) {
       var newGameId = res;
       Session.set('gameId', newGameId);
       localStorage.setItem ('sm_gameId', Session.get('gameId'));
-
-      Session.set('message', 'Waiting for challenger to join.');
     });
   },
   
@@ -46,6 +42,11 @@ Template.GameControl.events ({
       Session.set('gameId', '');
       localStorage.setItem('sm_gameId', '');
     }
+  },
 
+  'click #restartGame': function(evt) {
+    Meteor.call('newGame', Session.get('deviceId'), null, Session.get('gameId'), function(err, res) {
+      console.log(res);
+    });
   }
 });
