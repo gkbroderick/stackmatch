@@ -5,9 +5,15 @@ li.icon-:before {
   opacity: 0.5;
 }
 
-.icon-1:before {
+.icon-0:before {
   /*bomb*/
   content: "\f1e2";
+  font-family: FontAwesome;
+}
+
+.icon-1:before {
+  /*camera-retro*/
+  content: "\f083";
   font-family: FontAwesome;
 }
 
@@ -55,8 +61,6 @@ li.icon-:before {
 
 .icon-9:before {
   /*clock*/
-/*  position: absolute;
-  top: -100%;*/
   content: "\f017";
   font-family: FontAwesome;
 }
@@ -124,5 +128,53 @@ li.icon-:before {
 .icon-20:before {
   /*rocket*/
   content: "\f135";
+  font-family: FontAwesome;
+}
+
+.icon-21:before {
+  /*lightbulb-o*/
+  content: "\f0eb";
+  font-family: FontAwesome;
+}
+
+.icon-22:before {
+  /*motorcycle*/
+  content: "\f0eb";
+  font-family: FontAwesome;
+}
+
+.icon-23:before {
+  /*wrench*/
+  content: "\f0ad";
+  font-family: FontAwesome;
+}
+
+.icon-24:before {
+  /*spoon*/
+  content: "\f1b1";
+  font-family: FontAwesome;
+}
+
+.icon-25:before {
+  /*soccer-ball-o*/
+  content: "\f1e3";
+  font-family: FontAwesome;
+}
+
+.icon-26:before {
+  /*support*/
+  content: "\f1cd";
+  font-family: FontAwesome;
+}
+
+.icon-27:before {
+  /*umbrella*/
+  content: "\f0e9";
+  font-family: FontAwesome;
+}
+
+.icon-28:before {
+  /*trophy*/
+  content: "\f091";
   font-family: FontAwesome;
 }
