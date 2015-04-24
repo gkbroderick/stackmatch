@@ -1,17 +1,30 @@
 Template.GameControl.helpers ({
   gamesWaiting: function() {
-    var gameList = Games.find({players: {$size: 1}}).fetch();
+    var gameList = Games.find({players: {$size: 1}, gameStatus: 'fresh'}).fetch();
     if (gameList.length > 0) {
       return gameList;
     }
   },
 
   gameInProgress: function() {
+    var isDirty = Games.find({_id: Session.get('gameId'), gameStatus: 'dirty'});
+    if (isDirty.count()) {
+      Games.remove({_id: Session.get('gameId')});
+      Session.set('gameId', '');
+      localStorage.setItem('sm_gameId', '');
+      alert('your opponent left the game');
+    }
     return Session.get('gameId');
   }
 });
 
 Template.GameControl.events ({
+  'click label':function(evt){
+    //trying to make radio button labels clickable on mobile safari
+    //evt.preventDefault();
+    console.log(evt.target.control.value);
+  },
+  
   'click p.waiting-queue': function(evt) {
     var joinGameId = evt.target.id;
 
@@ -27,7 +40,9 @@ Template.GameControl.events ({
 
   'submit #new-game-form': function(evt) {
     evt.preventDefault();
-    var gameSize = evt.target.gameSize.value;
+    var gameSize = evt.target.selgamesize.value;
+    console.log(evt);
+
     Meteor.call('newGame', Session.get('deviceId'), gameSize, function(err, res) {
       var newGameId = res;
       Session.set('gameId', newGameId);

@@ -15,13 +15,21 @@
     </section>
     <form id='new-game-form'>
       <div class='form-spacing-two'>
-        <input type='submit' id='newGame' value='Queue up a New Game'>
+        <input type='submit' id='newGame' name='butNewGame' value='Queue up a New Game'>
       </div>
       <div class='form-spacing-two'>
-        <input type='radio' id='toggle-little' class='game-size' name='gameSize' value='Little' checked>
-          <label for='toggle-little'><i class="fa fa-th-large"></i> Little (40)</label>
-        <input type='radio' id='toggle-big' class='game-size' name='gameSize' value='Big'>
-          <label for='toggle-big'><i class="fa fa-th"></i> Big (56)</label>
+        <select name='selgamesize'>
+          <option value='Little' selected>
+            <i class="fa fa-th-large"></i> Little (40)
+          </option>
+          <option value='Big'>
+            <i class="fa fa-th"></i> Big (56)
+          </option>
+        </select>
+        <!-- <input type='radio' id='toggle-little' class='game-size' name='radGameSize' value='Little' checked>
+        <label for='toggle-little'><i class="fa fa-th-large"></i> Little (40)</label>
+        <input type='radio' id='toggle-big' class='game-size' name='radGameSize' value='Big'>
+        <label for='toggle-big'><i class="fa fa-th"></i> Big (56)</label> -->
       </div>
     </form>
     <h4 class='queue-message'>

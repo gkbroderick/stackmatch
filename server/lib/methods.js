@@ -69,6 +69,7 @@ Meteor.methods ({
         return Games.insert({
           grid: cardsShuffled,
           gridSize: gameSize,
+          gameStatus: 'fresh',
           moves: [],
           players: [{device: deviceId, matches: [], totalScore: 0, deviceName: 'Purple' }],
           timestamp: new Date().toISOString()
@@ -88,10 +89,7 @@ Meteor.methods ({
 
   removeMyGame: function(gameId, deviceId) {
     //only remove games initiated by the user
-    Games.remove({
-      _id: gameId,
-      'players.device': deviceId
-    })
+      Games.update({_id: gameId}, {$pull: {players: {device: deviceId}}, $set: {gameStatus: 'dirty'}});
   },
 
   flipUpCard: function(gameId, thisMove, lastMove) {
