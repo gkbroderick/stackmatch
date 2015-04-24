@@ -1,7 +1,7 @@
 <template name='GameControl'>
   {{#if gameInProgress}}
-    <input type='submit' id='leaveGame' value='Leave Game'>
-    <input type='submit' id='restartGame' value='Restart Game'>
+    <input type='submit' id='leave-game' value='Leave Game'>
+    <input type='submit' id='restart-game' value='Restart Game'>
     <section class="game-ui-flex">
       {{> Grid}}
       {{> Matches}}
@@ -13,25 +13,10 @@
       <p>The twists in this version are that each matching pair has a different score added to your total, and to beware of the “bomb” cards! They will subtract points when accidentally matched.</p>
       <p>Enjoy!</p>
     </section>
-    <form id='new-game-form'>
       <div class='form-spacing-two'>
-        <input type='submit' id='newGame' name='butNewGame' value='Queue up a New Game'>
+        <input type='submit' id='new-game-little' value='Queue up a small game'>
+        <input type='submit' id='new-game-big' value='Queue up a big game'>
       </div>
-      <div class='form-spacing-two'>
-        <select name='selgamesize'>
-          <option value='Little' selected>
-            <i class="fa fa-th-large"></i> Little (40)
-          </option>
-          <option value='Big'>
-            <i class="fa fa-th"></i> Big (56)
-          </option>
-        </select>
-        <!-- <input type='radio' id='toggle-little' class='game-size' name='radGameSize' value='Little' checked>
-        <label for='toggle-little'><i class="fa fa-th-large"></i> Little (40)</label>
-        <input type='radio' id='toggle-big' class='game-size' name='radGameSize' value='Big'>
-        <label for='toggle-big'><i class="fa fa-th"></i> Big (56)</label> -->
-      </div>
-    </form>
     <h4 class='queue-message'>
       ... and wait for someone to challenge you. Or click on a queued game below to join someone else's game.
     </h4>

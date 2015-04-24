@@ -38,10 +38,8 @@ Template.GameControl.events ({
     );
   },
 
-  'submit #new-game-form': function(evt) {
-    evt.preventDefault();
-    var gameSize = evt.target.selgamesize.value;
-    console.log(evt);
+  'click #new-game-little': function(evt) {
+    var gameSize = 'Little';
 
     Meteor.call('newGame', Session.get('deviceId'), gameSize, function(err, res) {
       var newGameId = res;
@@ -49,8 +47,18 @@ Template.GameControl.events ({
       localStorage.setItem ('sm_gameId', Session.get('gameId'));
     });
   },
-  
-  'click #leaveGame': function(evt) {
+
+  'click #new-game-big': function(evt) {
+    var gameSize = 'Big';
+
+    Meteor.call('newGame', Session.get('deviceId'), gameSize, function(err, res) {
+      var newGameId = res;
+      Session.set('gameId', newGameId);
+      localStorage.setItem ('sm_gameId', Session.get('gameId'));
+    });
+  },
+
+  'click #leave-game': function(evt) {
     var conf = window.confirm('Really? End this game?');
     if (conf == true) {
       Meteor.call('removeMyGame', Session.get('gameId'), Session.get('deviceId'));
@@ -59,7 +67,7 @@ Template.GameControl.events ({
     }
   },
 
-  'click #restartGame': function(evt) {
+  'click #restart-game': function(evt) {
     Meteor.call('newGame', Session.get('deviceId'), null, Session.get('gameId'), function(err, res) {
       console.log(res);
     });
