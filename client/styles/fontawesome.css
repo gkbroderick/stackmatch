@@ -48,8 +48,8 @@ li.icon-:before {
 }
 
 .icon-7:before {
-  /*github*/
-  content: "\f09b";
+  /*flag*/
+  content: "\f11e";
   font-family: FontAwesome;
 }
 
@@ -66,8 +66,8 @@ li.icon-:before {
 }
 
 .icon-10:before {
-  /*cogs*/
-  content: "\f085";
+  /*trophy*/
+  content: "\f091";
   font-family: FontAwesome;
 }
 
@@ -84,8 +84,8 @@ li.icon-:before {
 }
 
 .icon-13:before {
-  /*medkit*/
-  content: "\f0fa";
+  /*money*/
+  content: "\f0d6";
   font-family: FontAwesome;
 }
 
@@ -96,8 +96,8 @@ li.icon-:before {
 }
 
 .icon-15:before {
-  /*music*/
-  content: "\f001";
+  /*leaf*/
+  content: "\f06c";
   font-family: FontAwesome;
 }
 
@@ -150,31 +150,25 @@ li.icon-:before {
 }
 
 .icon-24:before {
-  /*spoon*/
-  content: "\f1b1";
+  /*cutlery*/
+  content: "\f0f5";
   font-family: FontAwesome;
 }
 
 .icon-25:before {
-  /*soccer-ball-o*/
-  content: "\f1e3";
+  /*paw*/
+  content: "\f1b0";
   font-family: FontAwesome;
 }
 
 .icon-26:before {
-  /*support*/
-  content: "\f1cd";
+  /*shopping-cart*/
+  content: "\f07a";
   font-family: FontAwesome;
 }
 
 .icon-27:before {
   /*umbrella*/
   content: "\f0e9";
-  font-family: FontAwesome;
-}
-
-.icon-28:before {
-  /*trophy*/
-  content: "\f091";
   font-family: FontAwesome;
 }

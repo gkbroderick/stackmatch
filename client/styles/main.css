@@ -19,11 +19,9 @@ h1 {
   margin: 0.8rem 0;
 }
 
-#new-game-form {
+.flex-container {
   display: flex;
-}
-
-#new-game-form .form-spacing-two {
+  display: -webkit-flex;
 }
 
 input[type=submit]{
@@ -48,6 +46,17 @@ input[type=submit]:hover, input[type=submit]:focus{
 }
 
 /*GameControl Template Specific Styling*/
+.button-spacing-around {
+  justify-content: space-around;
+  -webkit-justify-content: space-around;
+}
+
+.button-spacing-between-700 {
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  max-width: 700px;
+}
+
 .queue-message {
   color: #EFEFEF;
   max-width: 700px;

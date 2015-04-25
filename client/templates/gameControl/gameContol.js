@@ -12,9 +12,13 @@ Template.GameControl.helpers ({
       Games.remove({_id: Session.get('gameId')});
       Session.set('gameId', '');
       localStorage.setItem('sm_gameId', '');
-      alert('your opponent left the game');
+      alert('Your opponent has left the game.');
     }
     return Session.get('gameId');
+  },
+
+  gameCompleted: function() {
+    
   }
 });
 
