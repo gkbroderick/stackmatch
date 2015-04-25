@@ -86,10 +86,14 @@ Meteor.methods ({
     deck.createDeck();
     return deck.initializeGame(gameId);
   },
+  
+  leaveGame: function(gameId, deviceId) {
+    Games.update({_id: gameId}, {$pull: {players: {device: deviceId}}, $set: {gameStatus: 'dirty'}});
+  },
 
-  removeMyGame: function(gameId, deviceId) {
-    //only remove games initiated by the user
-      Games.update({_id: gameId}, {$pull: {players: {device: deviceId}}, $set: {gameStatus: 'dirty'}});
+  removeGame: function(gameId) {
+    //only remove dirty game
+    Games.remove({_id: gameId, gameStatus: 'dirty'});
   },
 
   flipUpCard: function(gameId, thisMove, lastMove) {

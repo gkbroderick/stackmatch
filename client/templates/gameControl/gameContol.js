@@ -19,12 +19,6 @@ Template.GameControl.helpers ({
 });
 
 Template.GameControl.events ({
-  'click label':function(evt){
-    //trying to make radio button labels clickable on mobile safari
-    //evt.preventDefault();
-    console.log(evt.target.control.value);
-  },
-  
   'click p.waiting-queue': function(evt) {
     var joinGameId = evt.target.id;
 
@@ -61,7 +55,7 @@ Template.GameControl.events ({
   'click #leave-game': function(evt) {
     var conf = window.confirm('Really? End this game?');
     if (conf == true) {
-      Meteor.call('removeMyGame', Session.get('gameId'), Session.get('deviceId'));
+      Meteor.call('leaveGame', Session.get('gameId'), Session.get('deviceId'));
       Session.set('gameId', '');
       localStorage.setItem('sm_gameId', '');
     }
