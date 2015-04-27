@@ -22,76 +22,21 @@ input[type=submit]:hover, input[type=submit]:focus{
 }
 
 
-//Game-size radio buttons
-// #new-game-form {
-//   // display: flex;
-// }
 
-// #new-game-form .form-spacing-two {
-//   height: 40px;
-// }
-
-// input[type="radio"].game-size, input[type="radio"].game-size + label {
-//   height: 100%;
-//   vertical-align: baseline;
-// }
-
-// input[type="radio"].game-size {
-//   // width: 0;
-//   opacity: 0;
-
-//   & + label {
-//     background-color: $button-color;
-//     color: darken($main-bgc, 10%);
-
-//     font-size: 1rem;
-//     border-radius: 5px;
-//     text-align: center;
-//     padding: 0.4rem 0.6rem;
-//     // margin: 1rem;
-//     margin-left: -20px;
-//     border-top: none;
-//     border-left: none;
-//     border-right: .13rem #86c5da solid;
-//     border-bottom: .13rem #86c5da solid;
-//     transition: background-color 0.5s, color 0.5s, border-color 0.5s;
-//   }
-
-//   &:checked + label {
-//     background-color: #5b96a9;
-//     color: #242424;
-//     border-color: #44707f;
-//     transition: background-color 0.5s, color 0.5s, border-color 0.5s;
-//   }
-// }
-
+/*GameControl Template Specific Styling*/
 .flex-container {
   display: flex;
   display: -webkit-flex;
 }
 
-input[type=submit]{
-  background-color: lightblue;
-  color: #5C5C5C;
-  font-size: 1rem;
-  border-radius: 5px;
-  text-align: center;
-  padding: .4rem .6rem;
-  border-top: none;
-  border-left: none;
-  border-right: .13rem #86c5da solid;
-  border-bottom: .13rem #86c5da solid;
-  transition: background-color 0.5s, color 0.5s, border-color 0.5s;
+.flex-start {
+  display: flex;
+  align-items: flex-start;
+  & #leave-game, & #restart-game{
+    margin-right: 10px;
+  }
 }
 
-input[type=submit]:hover, input[type=submit]:focus{
-  background-color: #5b96a9;
-  color: #242424;
-  border-color: #44707f;
-  transition: background-color 0.5s, color 0.5s, border-color 0.5s;
-}
-
-/*GameControl Template Specific Styling*/
 .button-spacing-around {
   justify-content: space-around;
   -webkit-justify-content: space-around;
