@@ -2,6 +2,7 @@
 .flex-container {
   display: flex;
   display: -webkit-flex;
+  max-width: 700px;
 }
 
 .flex-start {
@@ -17,10 +18,9 @@
   -webkit-justify-content: space-around;
 }
 
-.button-spacing-between-700 {
+.button-spacing-between {
   justify-content: space-between;
   -webkit-justify-content: space-between;
-  max-width: 700px;
 }
 
 

@@ -1,4 +1,3 @@
-
 //Game Intro/Game Control Modules
 .queue-message {
   color: $light-text;
@@ -8,23 +7,38 @@
 .instruction-text {
   margin-top: 0.8rem;
   margin-bottom: 1.8rem;
-  padding: 1rem;
+  padding: 0.5rem;
   background: $transparent-black;
   border-radius: $standard-border-radius;
   border: 2px solid $light-text;
   & p {
     margin: 0.7em 0;
+    padding: 5px;
   }
-  &.no-queue {
-    text-align: center;
-    max-width: 440px;
-    padding: 13px 8px 15px;
+}
+
+.instructions-heading {
+  border-radius: $standard-border-radius;
+  padding-left: 5px;
+  &:hover, &:focus {
+    background-color: lighten($transparent-black, 30%);
+    cursor: pointer;
+  }
+}
+
+#instructionsSymbol {
+  float: right;
+}
+
+#instructionsWrapper {
+  &.instructions-hidden {
+    display: none;
   }
 }
 
 .waiting-queue{
   text-align: center;
-  max-width: 440px;
+  max-width: 700px;
   padding: 13px 8px 15px;
   background-color: $light-text;
   border-radius: $standard-border-radius;
@@ -32,7 +46,13 @@
   &:hover{
     background-color: darken($light-text, 10%);
     transition: background-color 0.5s;
+    cursor: pointer;
   }
+}
+.no-queue {
+  text-align: center;
+  max-width: 700px;
+  padding: 13px 8px 15px;
 }
 
 /**Card Grid/Match-container Template Styling*/
@@ -83,6 +103,9 @@ li.turned-down {
   background: $cardback-color;
   color: $cardback-color;
   transition: background-color 0.3s, color 0.3s;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 li.turned-up.player-1, li.turned-up.player-0 {
@@ -98,7 +121,6 @@ li.turned-up.player-0 {
 li.turned-up.player-1 {
   background-image: linear-gradient(to bottom, $cardback-color 50%, $player1-color 50%);
 }
-
 
 /*Matches Template Styling*/
 header.head-container {
@@ -132,8 +154,8 @@ header.head-container {
     font-size: 0.9rem;
     background-color: $scoreboard-bgc;
     border-radius: $standard-border-radius;
-    margin: 0 auto 6px;
-    padding: 0.4rem 0.4rem 0.45rem;
+    margin: 0 auto 8px;
+    padding: 0.3rem 0.3rem 0.35rem;
   }
   & .match-list-wrapper{
     display: block;
