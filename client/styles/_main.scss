@@ -12,15 +12,14 @@
   background: $transparent-black;
   border-radius: $standard-border-radius;
   border: 2px solid $light-text;
-}
-.instruction-text p {
-  margin: 0.7em 0;
-}
-
-.instruction-text.no-queue {
-  text-align: center;
-  max-width: 440px;
-  padding: 13px 8px 15px;
+  & p {
+    margin: 0.7em 0;
+  }
+  &.no-queue {
+    text-align: center;
+    max-width: 440px;
+    padding: 13px 8px 15px;
+  }
 }
 
 .waiting-queue{
@@ -30,27 +29,25 @@
   background-color: $light-text;
   border-radius: $standard-border-radius;
   margin-bottom: 5px;
-}
-.waiting-queue:hover{
-  background-color: darken($light-text, 10%);
-  transition: background-color 0.5s;
+  &:hover{
+    background-color: darken($light-text, 10%);
+    transition: background-color 0.5s;
+  }
 }
 
 /**Card Grid/Match-container Template Styling*/
 .grid-container > ul {
-  list-style-type: none;
   padding: 0;
 }
 
-.grid-container li, .scoreboard li {
+.grid-container li, .match-list li {
   position: relative;
-  box-sizing: content-box;
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  padding: 4px;
   border: 1px solid black;
   border-radius: $standard-border-radius;
-  padding: 4px;
   margin: 4px 2px;
   text-align: center;
   vertical-align: middle;
@@ -78,10 +75,8 @@
 }
 
 .scoreboard {
-  background: $game-info-bgc;
+  background: $scoreboard-bgc;
   border-radius: $standard-border-radius;
-  padding: 0;
-  margin: 0;
 }
 
 li.turned-down {
@@ -116,7 +111,6 @@ header.head-container {
 }
 
 .grid-container {
-  box-sizing: content-box;
   width: 600px;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
   margin: 0.8rem auto;
@@ -126,20 +120,45 @@ header.head-container {
   display: inline-block;
   vertical-align: top;
   width: 48%;
-  background-color: $game-info-bgc;
-  border-radius: $standard-border-radius;
   color: darken($main-bgc, 5%);
   padding: 0.5rem 1rem 0.8rem;
   min-height: 130px;
-}
+  &:first-of-type{
+    margin-right: 1%;
+  }
 
-.match-container:first-of-type{
-  margin-right: 1%;
-}
-
-.match-container h3{
-  margin: 0;
-  padding: 0.5rem 0 0.8rem;
+  & h3{
+    display: inline-block;
+    font-size: 0.9rem;
+    background-color: $scoreboard-bgc;
+    border-radius: $standard-border-radius;
+    margin: 0 auto 6px;
+    padding: 0.4rem 0.4rem 0.45rem;
+  }
+  & .match-list-wrapper{
+    display: block;
+  }
+  & .match-list {
+    display: inline-block;
+    background-color: $scoreboard-bgc;
+    border-radius: $standard-border-radius;
+    padding: 5px;
+    margin: 0;
+    & li {
+      /*Styling for the match-list cards*/
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+      margin: 1px 0;
+      transition: all 0.5s ease;
+      & .icon {
+        font-size: 0.8rem;
+      }
+      & .tiny-score {
+        font-size: 0.5rem;
+      }
+    }
+  }
 }
 
 .player0 {
@@ -158,68 +177,7 @@ header.head-container {
   padding-bottom: 8px;
 }
 
-/*Flexbox layout setup for Game board*/
-.game-ui-flex {
-  max-width: 2000px;
-  text-align: center;
-  display: flex;
-  flex-flow: row wrap;
-  display: -webkit-flex;
-  -webkit-flex-flow: row wrap;
-}
 
-.grid-container{
-  order: 2;
-  -webkit-order: 2;
-}
-
-.scoreboard-p0, .scoreboard-p1{
-  flex-basis: 10rem;
-  -webkit-flex-basis: 10rem;
-  align-self: center;
-  -webkit-align-self: center;
-  margin: 0.2rem auto 0.5rem;
-}
-
-.scoreboard-p0{
-  order: 1;
-  -webkit-order: 1;
-}
-
-.scoreboard-p1{
-  order: 3;
-  -webkit-order: 3;
-}
-
-.matches {
-  order: 4;
-  flex-basis: 100%;
-  -webkit-order: 4;
-  -webkit-flex-basis: 100%;
-  text-align: center;
-}
-
-/*Media query to re-order flexbox Layout*/
-@media(max-width: 975px) {
-  .grid-container{
-    flex-basis: 100%;
-    order: 1;
-    -webkit-flex-basis: 100%;
-    -webkit-order: 1;
-  }
-  .grid-container ul {
-    max-width: 600px;
-    margin: auto;
-  }
-  .scoreboard-p0{
-    order: 2;
-    -webkit-order: 2;
-  }
-  .scoreboard-p1{
-    order: 3;
-    -webkit-order: 3;
-  }
-}
 
 /*Modal window*/
 
