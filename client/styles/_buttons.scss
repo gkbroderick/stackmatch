@@ -23,28 +23,5 @@ input[type=submit]:hover, input[type=submit]:focus{
 
 
 
-/*GameControl Template Specific Styling*/
-.flex-container {
-  display: flex;
-  display: -webkit-flex;
-}
 
-.flex-start {
-  display: flex;
-  align-items: flex-start;
-  & #leave-game, & #restart-game{
-    margin-right: 10px;
-  }
-}
-
-.button-spacing-around {
-  justify-content: space-around;
-  -webkit-justify-content: space-around;
-}
-
-.button-spacing-between-700 {
-  justify-content: space-between;
-  -webkit-justify-content: space-between;
-  max-width: 700px;
-}
 

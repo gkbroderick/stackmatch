@@ -18,11 +18,25 @@ Template.GameControl.helpers ({
   },
 
   gameCompleted: function() {
-    
+
   }
 });
 
 Template.GameControl.events ({
+  'click #instructions': function(evt) {
+    var instructionSymbol = document.getElementById("instructionsSymbol");
+    var instructionText = document.getElementById("instructionsWrapper");
+
+    if (instructionText.classList.contains("instructions-hidden")) {
+      instructionSymbol.innerText = "-";
+      instructionText.classList.remove("instructions-hidden");
+    }
+    else {
+      instructionSymbol.innerText = "+";
+      instructionText.classList.add("instructions-hidden");
+    }
+  },
+
   'click p.waiting-queue': function(evt) {
     var joinGameId = evt.target.id;
 
