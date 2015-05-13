@@ -28,17 +28,17 @@ Template.GameControl.events ({
     var instructionText = document.getElementById("instructionsWrapper");
 
     if (instructionText.classList.contains("instructions-hidden")) {
-      instructionSymbol.innerText = "-";
+      instructionSymbol.innerHTML = '<i class="fa fa-toggle-up  fa-lg"></i>';
       instructionText.classList.remove("instructions-hidden");
     }
     else {
-      instructionSymbol.innerText = "+";
+      instructionSymbol.innerHTML = '<i class="fa fa-toggle-down  fa-lg"></i>';
       instructionText.classList.add("instructions-hidden");
     }
   },
 
   'click p.waiting-queue': function(evt) {
-    var joinGameId = evt.target.id;
+    var joinGameId = this._id;
 
     Games.update(
       {_id: joinGameId},

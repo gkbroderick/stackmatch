@@ -11,7 +11,7 @@
 
   {{else}}
     <section class='queue-message instruction-text'>
-      <h3 id="instructions" class="instructions-heading" tabindex="0">Instructions <span id="instructionsSymbol"><strong>+</strong></span></h3>
+      <h3 id="instructions" class="instructions-heading" tabindex="0">Instructions <span id="instructionsSymbol"><i class="fa fa-toggle-down fa-lg"></i></span></h3>
       <div id="instructionsWrapper" class="instructions-hidden">
         <p>GridMatch is based on the turn-based card matching game commonly known as concentration.</p>
         <p>Each player takes a turn flipping two cards face up. If the cards match, they will add to their score and are removed from play. If the cards don't match, they are flipped back face down before the next turn.</p>
@@ -32,7 +32,12 @@
 
     {{#each gamesWaiting}}
       <p id='{{_id}}' class='waiting-queue'>
-        <i class="fa fa-toggle-right"></i> {{gridSize}} game waiting for challenger<br> (Game created at {{formatDate timestamp 'LT'}})
+        <span class="fa-stack">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-user-plus fa-stack-1x"></i>
+        </span>
+        <span>{{gridSize}} game waiting for challenger</span>
+        <span class="timestamp">Added {{formatDate timestamp}}</span>
       </p>
     {{/each}}
 

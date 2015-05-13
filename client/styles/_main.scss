@@ -37,9 +37,10 @@
 }
 
 .waiting-queue{
-  text-align: center;
+  text-align: left;
+  vertical-align: middle;
   max-width: 700px;
-  padding: 13px 8px 15px;
+  padding: 13px 13px 15px;
   background-color: $light-text;
   border-radius: $standard-border-radius;
   margin-bottom: 5px;
@@ -49,10 +50,16 @@
     cursor: pointer;
   }
 }
+
+.timestamp {
+  font-style: italic;
+  float: right;
+}
+
 .no-queue {
   text-align: center;
   max-width: 700px;
-  padding: 13px 8px 15px;
+  padding: 13px 13px 15px;
 }
 
 /**Card Grid/Match-container Template Styling*/
